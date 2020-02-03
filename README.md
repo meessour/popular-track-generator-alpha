@@ -8,7 +8,7 @@ The main functionality of the app is displaying the most popular tracks of an ar
 
 ## 1. Live Demo's
 
-[Week 1]()
+[Week 1](https://msourhva.github.io/web-app-from-scratch-1920/)
 
 <!-- [Week 2]()
 
