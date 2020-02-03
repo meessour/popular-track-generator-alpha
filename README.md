@@ -1,59 +1,105 @@
-# Web App From Scratch @cmda-minor-web 1819
+# Spotify Artists Best-Of Showcase
 
-In this course you will learn to build a web application without frameworks or unnecessary libraries, but with vanilla HTML, CSS & JavaScript as much as possible. The end result is a modular, single page web app (SPA). Data will be retrieved from an external API of your choice, manipulated and finally shown in the UI of the App. You will learn different ways to structure code and develope your own coding style. With the gained knowledge you will be able to build interactive prototypes, based on real data. Also you will gain a better understanding of the how API's, frameworks and libraries work.
+## Summary
 
-## Learning goals
+The main functionality of the app is displaying the most popular tracks of an artists. [Spotify](https://www.spotify.com/) currently has this feature implemented, but with limitations. Spotify only showcases the top 10 most popular tracks of an artist on their page. This app also showcases the most popluar tracks, but without the limitation of 10 tracks.
 
-* _You can add structure to your code by applying patterns. You can defend the choice for the chosen patterns_
-* _You can retrieve data, manipulate it and dynamically convert it to html elements using templating_
-* _You understand how you can work with an external API using asynchronous code_
-* _You understand how you can manage state in your application and you inform the user of state where necessary_
+![Overview](img\camo_krooked_most_popluar.png)
 
-[Rubric](https://docs.google.com/spreadsheets/d/e/2PACX-1vTC69BUOGNQj_bLQE9LiprKGYChzb4LOoROoUiLUP8DReOcFLqS5k90Wu1LK9L5r1IVq7BDA1qISp5u/pubhtml)
+## 1. Live Demo's
 
-## Program
+[Week 1]()
 
-### Week 1 - Hello API 🐒
+[Week 2]()
 
-Goal: Retrieve data from an API and render it in an overview page.
+[Week 3]()
 
-[Excercises](https://github.com/cmda-minor-web/web-app-from-scratch-1920/blob/master/course/week-1.md)
+## 2. Usage
 
-[Slides](https://drive.google.com/open?id=1Rjl9xqXoKniQSRJPdkU1O5YwWC33SJK8KiV0a-H_xZU)
+Fork and/or clone it. Serve the app from a webserver.
+```bash
+git clone https://github.com/Arash217/web-app-from-scratch-18-19
+```
 
-### Week 2 - Design and Refactor 🛠
+## 3. Restrictions
 
-Goal: Design the web app. Add routes and states. Rendering detail page.
+- The app is made with ES6+ features without transpiling to ES5, and thus isn't production ready. 
+- [Currently (28-2-2019) only working on Google Chrome 72+, because of the use of static class fields.](https://kangax.github.io/compat-table/esnext/)
 
-[Excercises](https://github.com/cmda-minor-web/web-app-from-scratch-1920/blob/master/course/week-2.md)
+## 4. Features
 
-[Slides](https://drive.google.com/open?id=1IqQeu1m0dQiSC_KCvrn8eencAgtYe7X6qT-gm0n9Bmc)
+- Countries overview 
+- Country details
+- Filter countries
+- Sort countries
 
-### Week 3 - Wrapping up 🎁
+## 5. Wishlist
 
-Goal:
-Manipulate data. Split code into modules. Reflect on end result
+- [x] Time-based cache
+- [x] Error handling
+- [x] ES6 modules
+- [x] ES6 classes
+- [x] Using higher order functions to maximise reusability
+- [ ] Shorter names for functions, variables, etc.
+- [ ] Handlebars templates in separate files
 
-[Excercises](https://github.com/cmda-minor-web/web-app-from-scratch-1920/blob/master/course/week-3.md)
+## 6. API
 
-[Slides](https://drive.google.com/open?id=1BSzGYNLMgtHD4HRnK7f0DgyTv4Pg3xsQwD_eYNo7v0Y)
+[REST Countries](https://restcountries.eu) is used to fetch countries data as JSON.
+The API is used in the overview page to retrieve and display the name, flag and country code of all countries.
+Additional data is requested and shown in the detail page.
+<br/>
+There aren't any restrictions mentioned in the docs of REST Countries.
 
-<!-- Add a link to your live demo in Github Pages 🌐-->
+## 7. Best practices & Design patterns
+Best practices:
+- ~~Strict mode~~ (not needed with ES6 modules)
+- Constants instead of variables
+- CamelCase
+- Line length under 80
+- End statements with semicolon
+- Avoid else, return early
+- Single quotes for strings
 
-<!-- ☝️ replace this description with a description of your own work -->
+Design patterns:
++ ~~IIFE~~ (not needed with ES6 modules)
++ Proxy pattern for time-based cache
++ Template method pattern for rendering pages
 
-<!-- replace the code in the /docs folder with your own, so you can showcase your work with GitHub Pages 🌍 -->
+## 8. Actor diagram
+ 
+<details>
+<summary>Week 2</summary>
 
-<!-- Add a nice poster image here at the end of the week, showing off your shiny frontend 📸 -->
+![Actor diagram](../master/images/actor-diagram-w2.jpg)
+</details>
 
-<!-- Maybe a table of contents here? 📚 -->
+<details>
+<summary>Week 3</summary>
 
-<!-- How about a section that describes how to install this project? 🤓 -->
+![Actor diagram](../master/images/actor-diagram-w3.jpg)
+</details>
 
-<!-- ...but how does one use this project? What are its features 🤔 -->
+## 9. Interaction diagram
+Note: the numbers are used to display the order of method execution.
 
-<!-- What external data source is featured in your project and what are its properties 🌠 -->
+<details>
+<summary>Home</summary>
 
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
+![Actor diagram](../master/images/home-interaction.jpg)
+</details>
 
-<!-- How about a license here? 📜 (or is it a licence?) 🤷 -->
+<details>
+<summary>Details</summary>
+
+![Actor diagram](../master/images/details-interaction.jpg)
+</details>
+
+<details>
+<summary>Search and sort</summary>
+
+![Actor diagram](../master/images/search-and-sort-interaction.jpg)
+</details>
+
+## Licence
+MIT © [Arash Paknezad](https://github.com/Arash217)
