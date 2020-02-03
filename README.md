@@ -10,63 +10,54 @@ The main functionality of the app is displaying the most popular tracks of an ar
 
 [Week 1]()
 
-[Week 2]()
+<!-- [Week 2]()
 
-[Week 3]()
+[Week 3]() -->
 
 ## 2. Usage
 
-Fork and/or clone it. Serve the app from a webserver.
 ```bash
-git clone https://github.com/Arash217/web-app-from-scratch-18-19
+git clone https://github.com/msourHvA/web-app-from-scratch-1920.git
 ```
 
-## 3. Restrictions
+<!-- ## 3. Restrictions -->
 
-- The app is made with ES6+ features without transpiling to ES5, and thus isn't production ready. 
-- [Currently (28-2-2019) only working on Google Chrome 72+, because of the use of static class fields.](https://kangax.github.io/compat-table/esnext/)
+<!-- - The app is made with ES6+ features without transpiling to ES5, and thus isn't production ready. 
+- [Currently (28-2-2019) only working on Google Chrome 72+, because of the use of static class fields.](https://kangax.github.io/compat-table/esnext/) -->
 
-## 4. Features
+<!-- ## 4. Features -->
 
-- Countries overview 
-- Country details
-- Filter countries
-- Sort countries
+<!-- - x -->
 
 ## 5. Wishlist
 
-- [x] Time-based cache
-- [x] Error handling
-- [x] ES6 modules
-- [x] ES6 classes
-- [x] Using higher order functions to maximise reusability
-- [ ] Shorter names for functions, variables, etc.
-- [ ] Handlebars templates in separate files
+- [ ] Search on artist
+- [ ] Show top tracks of artist
+- [ ] Display artist's information
+- [ ] Generate playlist with all the most populuar tracks
 
 ## 6. API
 
-[REST Countries](https://restcountries.eu) is used to fetch countries data as JSON.
-The API is used in the overview page to retrieve and display the name, flag and country code of all countries.
-Additional data is requested and shown in the detail page.
+[The Spotify Web API](https://developer.spotify.com/documentation/web-api/) Based on simple REST principles, the Spotify Web API endpoints return JSON metadata about music artists, albums, and tracks, directly from the Spotify Data Catalogue.
 <br/>
 There aren't any restrictions mentioned in the docs of REST Countries.
 
-## 7. Best practices & Design patterns
-Best practices:
+<!-- ## 7. Best practices & Design patterns -->
+<!-- Best practices:
 - ~~Strict mode~~ (not needed with ES6 modules)
 - Constants instead of variables
 - CamelCase
 - Line length under 80
 - End statements with semicolon
 - Avoid else, return early
-- Single quotes for strings
+- Single quotes for strings -->
 
-Design patterns:
+<!-- Design patterns:
 + ~~IIFE~~ (not needed with ES6 modules)
 + Proxy pattern for time-based cache
-+ Template method pattern for rendering pages
++ Template method pattern for rendering pages -->
 
-## 8. Actor diagram
+<!-- ## 8. Actor diagram
  
 <details>
 <summary>Week 2</summary>
@@ -78,9 +69,9 @@ Design patterns:
 <summary>Week 3</summary>
 
 ![Actor diagram](../master/images/actor-diagram-w3.jpg)
-</details>
+</details> -->
 
-## 9. Interaction diagram
+<!-- ## 9. Interaction diagram
 Note: the numbers are used to display the order of method execution.
 
 <details>
@@ -99,7 +90,7 @@ Note: the numbers are used to display the order of method execution.
 <summary>Search and sort</summary>
 
 ![Actor diagram](../master/images/search-and-sort-interaction.jpg)
-</details>
+</details> -->
 
 ## Licence
-MIT © [Arash Paknezad](https://github.com/Arash217)
+MIT © [Mees Sour](https://github.com/msourHvA)
