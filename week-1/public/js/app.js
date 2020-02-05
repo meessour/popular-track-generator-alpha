@@ -1,16 +1,23 @@
 // function fetchData(url, timeout, callback) {
 function fetchData() {
-    var xhr = new XMLHttpRequest();
-    var url = "https://api.spotify.com/v1/search?q=Camo&type=artist"
+    const input = document.getElementById('input').value
+    const baseUrl = 'https://api.spotify.com/v1/'
+    const searchType = 'artist'
+    const finalUrl = `${baseUrl}search?q=${input}&type=${searchType}`
 
-    xhr.open('GET', url, true);
+    const requestType = 'GET'
+    const authorizationKey = 'BQBm1yBoEO9dpqKRw7WAnG_qVAcJkwnHJiSI3oFuIITt43c1VoFFVB6ZsYA1oqa9TOZcGnny2uzb0RdbufO-QCrhdvfRoefQ43AICPnI28POpyblnknbjOwn4Jxkhn0FtwI-P3TLBRvYvhdllvbWI8uebym5bMZrJSsos-VA'
+
+    var xhr = new XMLHttpRequest();
+    xhr.open(requestType, finalUrl, true);
     xhr.setRequestHeader('Accept', 'application/json');
-    xhr.setRequestHeader('Content-Type', "Bearer BQC-0lB6in850eU4qYq0TPYun_pNH7bgmg39hjDPmMr8aEwDtSFtB5zN2aMd6gq54woAr8VTjmSzqurBswhRrN6YQHrljkmqs_U39-MNYRXNESNwYIdZd2tyNOeMLRZGHA21sMPx8TP-aKt9BQHda_UVN03RWnFfcGfXscKq")
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', `Bearer ${authorizationKey}`);
     xhr.onload = function(e) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 var response = xhr.responseText
-                setContent(JSON.parse(response))
+                setContent(response)
             } else {
                 var response = xhr.statusText
                 setContent(response)
@@ -25,9 +32,21 @@ function fetchData() {
 }
 
 function setContent(data) {
-    console.log('Data', data)
+    var parsedData = JSON.parse(data)
+    var artists = parsedData.artists
+    var items = artists.items
 
-    document.getElementById("result").innerHTML = data;
+    console.log('Data', items)
+
+    var html = '';
+
+    items.map(artist => html += '<option value="' + artist.name + '">');
+
+    console.log('html', html)
+    document.getElementById('wordlist').innerHTML = html;
+
+
+    // $("#wordlist").append(html);
 }
 
 // function processRequest(e) {

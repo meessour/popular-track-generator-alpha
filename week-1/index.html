@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Spotify font -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="public/css/styles.css">
     <title>Artist Showcase</title>
     <script src="public/js/app.js"></script>
+
 </head>
 
 <body>
-    <h1>Title</h1>
-    <button onclick="fetchData()">Fetch data</button>
-    <b> 
-    <h2>Result</h2>
-    <p id="result"></p>
+    <div class="bg-image"></div>
+    <div class="bg-text">
+        <h1>Search the most popular tracks of your favorite artist</h1>
+        <datalist id="wordlist"></datalist>
+        <input type="text" list="wordlist" id="input" oninput="fetchData()" placeholder="Search for artist">
+    </div>
 </body>
 
 </html>
