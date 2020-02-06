@@ -55,10 +55,14 @@ Design patterns:
 
 ## Wishlist
 
-- [ ] Search on artist
-- [ ] Show top tracks of artist
-- [ ] Display artist's information
-- [ ] Generate playlist with all the most populuar tracks
+- [x] Can make alphabet letters
+- [ ] Menu: Menuitem Starter
+- [ ] Menu: Menuitem Main
+- [ ] Menu: Menuitem Dessert
+- [ ] Menu items with description
+- [ ] Restaurant info page
+- [ ] Restaraunt title
+- [ ] Interactive button to go to ingo page
 
 ## Licence
 MIT © [Mees Sour](https://github.com/meessour)
