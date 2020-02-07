@@ -6,7 +6,7 @@ function fetchData() {
     const finalUrl = `${baseUrl}search?q=${input}&type=${searchType}`
 
     const requestType = 'GET'
-    const authorizationKey = 'BQBm1yBoEO9dpqKRw7WAnG_qVAcJkwnHJiSI3oFuIITt43c1VoFFVB6ZsYA1oqa9TOZcGnny2uzb0RdbufO-QCrhdvfRoefQ43AICPnI28POpyblnknbjOwn4Jxkhn0FtwI-P3TLBRvYvhdllvbWI8uebym5bMZrJSsos-VA'
+    const authorizationKey = 'BQBG868LT98vImVzMvfPS0laq-OLNxz8fD6qnx6V_F5IAMMbdt794BB1MjrrjLHdL9R1Y_WThF5EYP1bQZwP4lRRGxu206ewZ5M1GRrHLqv37P2JrPuveptzuG4sNgTW470cL8KK2j3iOq-daspO7zxSIBW7JtSI4V1Eb0q3'
 
     var xhr = new XMLHttpRequest();
     xhr.open(requestType, finalUrl, true);
