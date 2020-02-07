@@ -24,18 +24,31 @@ The main functionality of the app is displaying the most popular tracks of an ar
 <br/>
 There aren't any restrictions mentioned in the docs of REST Countries.
 
+Here is the format in which the API returns it's data (fetching artists by search query in string format):
+```json
+{
+  "artists" : {
+    "href" : "",
+    "items" : [ {
+      "id" : "",
+      "name" : "",
+     ] },
+  }
+}
+```
+
 ## Usage
 
 ```bash
 git clone https://github.com/meessour/web-app-from-scratch-1920.git
 ```
 
-## Interaction dsiagram
+## Interaction diagram
  
 <details>
-<summary>Interaction dsiagram</summary>
+<summary>Interaction diagram</summary>
 
-![Interaction dsiagram](../)
+![Interaction diagram](../)
 </details>
 
 ## Best practices & Design patterns

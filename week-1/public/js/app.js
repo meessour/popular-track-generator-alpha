@@ -33,16 +33,18 @@ function fetchData() {
 
 function setContent(data) {
     var parsedData = JSON.parse(data)
-    var artists = parsedData.artists
-    var items = artists.items
+    // All the artist objects in an array
+    var items = parsedData.artists.items
 
-    console.log('Data', items)
+    console.log('Data', data)
 
+    // A list containing option tags with all the names of the artists.
     var html = '';
 
     items.map(artist => html += '<option value="' + artist.name + '">');
 
     console.log('html', html)
+    // Render all the 
     document.getElementById('wordlist').innerHTML = html;
 
 
