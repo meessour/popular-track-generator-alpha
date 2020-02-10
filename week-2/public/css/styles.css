@@ -1,25 +1,18 @@
-body,
-html {
+body, html {
     height: 100%;
     margin: 0;
+    background-image: url("../../../img/close-up-photography-of-microphone-144429.jpg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 * {
     box-sizing: border-box;
     font-family: 'Montserrat'
 }
-
-.bg-image {
-    background-image: url("../../../img/close-up-photography-of-microphone-144429.jpg");
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-    transform: scale(1.1);
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 
 /* Removes the arrow in the search field */
 
@@ -31,18 +24,18 @@ input::-webkit-calendar-picker-indicator {
     color: white;
     font-weight: bold;
     position: absolute;
-    top: 50%;
+    /* top: 0%; */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%);
     z-index: 2;
-    width: 80%;
+    width: 100%;
     padding: 20px;
     text-align: center;
 }
 
-input[type=text],
-select {
-    width: 50%;
+input[type=text], select {
+    max-width: 600px;
+    width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
