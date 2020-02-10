@@ -1,8 +1,12 @@
 # Spotify Artists Best-Of Showcase
 
+![Preview](img\webiste-preview.png)
+
 ## Live Demo's
 
 [Week 1](https://meessour.github.io/web-app-from-scratch-1920/week-1)
+
+[Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2)
 
 ## Functionalities
 
@@ -52,30 +56,8 @@ git clone https://github.com/meessour/web-app-from-scratch-1920.git
 </details>
 
 ## Best practices & Design patterns
-Best practices:
-- ~~Strict mode~~ (not needed with ES6 modules)
-- Constants instead of variables
-- CamelCase
-- Line length under 80
-- End statements with semicolon
-- Avoid else, return early
-- Single quotes for strings
-
-Design patterns:
-+ ~~IIFE~~ (not needed with ES6 modules)
-+ Proxy pattern for time-based cache
-+ Template method pattern for rendering pages
 
 ## Wishlist
-
-- [x] Can make alphabet letters
-- [ ] Menu: Menuitem Starter
-- [ ] Menu: Menuitem Main
-- [ ] Menu: Menuitem Dessert
-- [ ] Menu items with description
-- [ ] Restaurant info page
-- [ ] Restaraunt title
-- [ ] Interactive button to go to ingo page
 
 ## Licence
 MIT © [Mees Sour](https://github.com/meessour)
