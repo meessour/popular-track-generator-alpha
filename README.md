@@ -1,12 +1,12 @@
 # Spotify Artists Best-Of Showcase
 
-![Preview](img\webiste-preview.png)
+![Preview](img\website-preview.png)
 
 ## Live Demo's
 
-[Week 1](https://meessour.github.io/web-app-from-scratch-1920/week-1)
+[Week 1](https://meessour.github.io/web-app-from-scratch-1920/week-1/)
 
-[Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2)
+[Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2/)
 
 ## Functionalities
 
