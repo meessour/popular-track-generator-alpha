@@ -43,8 +43,19 @@ Here is the format in which the API returns it's data (fetching artists by searc
 
 ## Usage
 
+Clone the project
 ```bash
 git clone https://github.com/meessour/web-app-from-scratch-1920.git
+```
+
+Install the http-server package
+```bash
+npm i -g http-server
+```
+
+Run local server
+```bash
+hs
 ```
 
 ## Interaction diagram
