@@ -28,10 +28,10 @@ function getMostPopularTracksTemplate(tracks) {
     let html = "";
 
     tracks.map(track => html +=
-        `<a class="artist-item" href=${track.external_urls.spotify}>
-            <img class="artist-picture" src=${track.album && track.album.images[0] ? track.album.images[(track.album.images.length - 1)].url : ""} />
-                <div class="artist-description">
-                    <p class="artist-name">${track.name}</p>
+        `<a class="track-item" href=${track.external_urls.spotify}>
+            <img class="track-picture" src=${track.album && track.album.images[0] ? track.album.images[(track.album.images.length - 1)].url : ""} />
+                <div class="track-description">
+                    <p class="track-name">${track.name}</p>
                 </div>
         </a>`
     );

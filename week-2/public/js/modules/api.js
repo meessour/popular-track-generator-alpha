@@ -96,7 +96,7 @@ async function fetchTracks(artistId, token) {
 
     const baseUrl = "https://api.spotify.com/v1/";
     const requestType = "GET";
-    const country = "NL";
+    const country = "US";
 
     const finalUrl = `${baseUrl}artists/${artistId}/top-tracks?country=${country}`;
 

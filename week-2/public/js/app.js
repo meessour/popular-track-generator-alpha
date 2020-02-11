@@ -3,6 +3,9 @@ import * as Api from './modules/api.js';
 import * as Parser from './modules/parser.js';
 import * as LocalStorage from './modules/local-storage.js';
 
+// Routie, a library used for handling routing
+import './libs/routie.min.js';
+
 init()
 
 const artistsNameInput = document.getElementById("artist-name-input")
@@ -23,6 +26,11 @@ artistsNameInput.addEventListener("input", function () {
     }
 });
 
+routie(':id', function(id) {
+    setMostPopularTracks(id) 
+    clearSearch()
+});
+
 async function init() {
     // Get the token
     token = await LocalStorage.getTokenFromLocalStorage();
@@ -33,9 +41,20 @@ async function init() {
     }
 }
 
-async function setMostPopularTracks() {
+async function setMostPopularTracks(artistId) {
+    if (!artistId) { console.log("artistId is undefined"); return }
+
+    // Get the token
+    if (!token) {
+        await init()
+        if (!token) {
+            console.log("Token could not be set");
+            return
+        }
+    }
+
     // Fetch the token
-    let tracks = await Api.fetchTracks("1dfeR4HaWDbWqFHLkxsg1d", token)
+    let tracks = await Api.fetchTracks(artistId, token)
     if (!tracks) { console.log("tracks are undefined"); return }
 
     // Fill in and get the template with the search results
@@ -90,6 +109,7 @@ async function searchArtistInput(input) {
     searchResult.innerHTML = searchResultsHtml;
 }
 
-function clearArtistItems() {
+function clearSearch() {
     searchResult.innerHTML = "";
+    artistsNameInput.value = "";
 }
