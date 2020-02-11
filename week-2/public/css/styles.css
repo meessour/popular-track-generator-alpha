@@ -64,7 +64,7 @@ input::-webkit-calendar-picker-indicator {
 .artist-name, .artist-followers {
     margin: 0 0 0 16px;
     color: black;
-
+    width: fit-content;
     text-overflow: ellipsis;
 }
 

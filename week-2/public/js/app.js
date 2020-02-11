@@ -28,21 +28,12 @@ async function init() {
     token = await LocalStorage.getTokenFromLocalStorage();
 
     if (!token) {
-        setToken();
+        const tokenData = await getTokenData();
+        setToken(tokenData);
     }
-
-    setMostPopularTracks();
 }
 
 async function setMostPopularTracks() {
-    // if (!token) {
-    //     await init()
-    //     if (!token) {
-    //         console.log("Token could not be set");
-    //         return
-    //     }
-    // }
-
     // Fetch the token
     let tracks = await Api.fetchTracks("1dfeR4HaWDbWqFHLkxsg1d", token)
     if (!tracks) { console.log("tracks are undefined"); return }
@@ -56,7 +47,7 @@ async function setMostPopularTracks() {
     mostPopularTracks.innerHTML = mostPopularTracksHtml;
 }
 
-async function setToken() {
+async function getTokenData() {
     // Fetch the token
     const tokenData = await Api.fetchToken()
     if (!tokenData) { console.log("tokenData is undefined"); return }
@@ -65,9 +56,15 @@ async function setToken() {
     const parsedToken = Parser.parseTokenData(tokenData)
     if (!parsedToken || !parsedToken.accessToken || !parsedToken.expiresIn) { console.log("Parsed token is undefined/invalid"); return }
 
-    token = parsedToken.accessToken
+    return parsedToken
+}
 
-    LocalStorage.setTokenInLocalStorage(parsedToken.accessToken, parsedToken.expiresIn)
+function setToken(tokenData) {
+    if (tokenData && tokenData.accessToken && tokenData.expiresIn) {
+        token = tokenData.accessToken
+
+        LocalStorage.setTokenInLocalStorage(tokenData.accessToken, tokenData.expiresIn)
+    }
 }
 
 async function searchArtistInput(input) {

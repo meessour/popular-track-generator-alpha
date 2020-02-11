@@ -91,7 +91,8 @@ function fetchArtists(input, token) {
 }
 
 async function fetchTracks(artistId, token) {
-    if (!artistId) return;
+    if (!artistId) { console.log("artistId is undefined"); return; }
+    if (!token) { console.log("token is undefined"); return; }
 
     const baseUrl = "https://api.spotify.com/v1/";
     const requestType = "GET";
