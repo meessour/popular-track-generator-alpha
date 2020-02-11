@@ -96,13 +96,12 @@ input::-webkit-calendar-picker-indicator {
     align-items: center;
 }
 
-.search-result, .artist-info {
+.search-result, .most-popular-tracks {
     background-color: #fff;
     border-radius: 4px;
     width: 100%;
 }
-.artist-info {
+.most-popular-tracks {
     margin-top: 8px;
     margin-bottom: 18px;
-    height: 200px;
 }
