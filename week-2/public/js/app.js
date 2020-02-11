@@ -1,16 +1,19 @@
+import * as TemplateArtistResult from './modules/template-artists-result.js';
+
 // On load, fetch the token
 getToken()
 
-const ARTISTS_NAME_INPUT = document.getElementById("artistNameInput")
-const WORD_LIST = document.getElementById("wordList")
+const ARTISTS_NAME_INPUT = document.getElementById("artist-name-input")
+const SEARCH_RESULT = document.getElementById("search-result")
 
 ARTISTS_NAME_INPUT.addEventListener("input", function() {
-    const INPUT = ARTISTS_NAME_INPUT.value.trim()
+    const INPUT = ARTISTS_NAME_INPUT.value
 
     // Check if input is not empty
     if (INPUT && INPUT !== "" && INPUT.length) {
         searchArtistInput(INPUT);
     } else {
+        clearArtistItems()
         console.log("Input is empty");
     }
 });
@@ -34,12 +37,8 @@ async function getToken() {
 }
 
 async function fetchToken() {
-    // The client id and client secret needed for fetching a token
-    const CLIENT_ID = "2779f7bf0903431ea612d81a437c691b";
-    const CLIENT_SECRET = "a5327f791f414ca1ae6146e2092879aa";
-
     // Encode the token via base64 
-    const ENCODED_TOKEN = window.btoa((CLIENT_ID + ":" + CLIENT_SECRET));
+    const TOKEN = "Mjc3OWY3YmYwOTAzNDMxZWE2MTJkODFhNDM3YzY5MWI6YTUzMjdmNzkxZjQxNGNhMWFlNjE0NmUyMDkyODc5YWE="
 
     const URL = "https://accounts.spotify.com/api/token"
     const REQUEST_TYPE = "POST"
@@ -47,7 +46,7 @@ async function fetchToken() {
     var xhr = new XMLHttpRequest();
     xhr.open(REQUEST_TYPE, URL, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Authorization", "Basic " + ENCODED_TOKEN);
+    xhr.setRequestHeader("Authorization", "Basic " + TOKEN);
     xhr.onload = function(e) {
         // Ready state 4 = DONE, the operation is complete
         if (xhr.readyState === 4) {
@@ -166,12 +165,12 @@ function fetchArtists(input, token) {
 }
 
 function setArtistItems(artists) {
-    // A list containing option tags with all the names of the artists.
-    let html = "";
-
-    // Set the name of every artist as option
-    artists.map(artist => html += `<option value=${artist.name}>`);
+    const RESULTS = TemplateArtistResult.getArtistSearchResultsTemplate(artists);
 
     // Fill the options in the list with results
-    WORD_LIST.innerHTML = html;
+    SEARCH_RESULT.innerHTML = RESULTS;
+}
+
+function clearArtistItems() {
+    SEARCH_RESULT.innerHTML = "";
 }
