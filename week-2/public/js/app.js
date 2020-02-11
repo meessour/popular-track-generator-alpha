@@ -35,13 +35,13 @@ async function init() {
 }
 
 async function setMostPopularTracks() {
-    if (!token) {
-        await init()
-        if (!token) {
-            console.log("Token could not be set");
-            return
-        }
-    }
+    // if (!token) {
+    //     await init()
+    //     if (!token) {
+    //         console.log("Token could not be set");
+    //         return
+    //     }
+    // }
 
     // Fetch the token
     let tracks = await Api.fetchTracks("1dfeR4HaWDbWqFHLkxsg1d", token)

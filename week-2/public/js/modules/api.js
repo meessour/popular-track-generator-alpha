@@ -75,19 +75,16 @@ function fetchArtists(input, token) {
                             resolve(parsedData.artists.items)
                         }
                     } else {
-                        console.log("The data returned from fetching the artists, was invalid");
-                        return
+                        reject(this.statusText);
                     }
 
                 } else {
-                    console.log("Something went wrong. Status code: ", xhr.status);
-                    return;
+                    reject(this.statusText);
                 }
             }
         };
         xhr.onerror = function (e) {
-            console.log("An error occurred", e);
-            return;
+            reject(this.statusText);
         };
         xhr.send();
     })
@@ -122,19 +119,16 @@ async function fetchTracks(artistId, token) {
                             resolve(parsedData.tracks)
                         }
                     } else {
-                        console.log("The data returned from fetching the artists, was invalid");
-                        return
+                        reject(this.statusText);
                     }
 
                 } else {
-                    console.log("Something went wrong. Status code: ", xhr.status);
-                    return;
+                    reject(this.statusText);
                 }
             }
         };
         xhr.onerror = function (e) {
-            console.log("An error occurred", e);
-            return;
+            reject(this.statusText);
         };
         xhr.send();
     })
