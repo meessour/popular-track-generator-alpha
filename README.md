@@ -2,31 +2,37 @@
 ## Live Demo's
 
 [Week 1](https://meessour.github.io/web-app-from-scratch-1920/week-1/)
+<details>
+
 ![Preview](./img/website-preview-week-1.png)
+</details>
 
 [Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2/)
+<details>
+
 ![Preview](./img/website-preview-week-2.png)
+</details>
 
 [Week 3](https://meessour.github.io/web-app-from-scratch-1920/week-3/)
 
 ## Functionalities
 
 The main functionality of the app is displaying the most popular tracks of an artists. [Spotify](https://www.spotify.com/) currently has this feature implemented, but with limitations. Spotify only showcases the top 10 most popular tracks of an artist on their page. This app also showcases the most popluar tracks, but without the limitation of 10 tracks.
+<details>
 
 ![Overview](./img/camo_krooked_most_popluar.png)
+</details>
 
 ## Actor diagram
  
 <details>
-<summary>Actor diagram</summary>
 
-![Actor diagram](../)
+![Actor diagram](./img/actor-diagram.png)
 </details>
 
 ## Interaction diagram
  
 <details>
-<summary>Interaction diagram</summary>
 
 ![Interaction diagram](./img/interaction-diagram.png)
 </details>
