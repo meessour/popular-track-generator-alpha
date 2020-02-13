@@ -8,6 +8,8 @@
 
 [Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2/)
 
+[Week 3](https://meessour.github.io/web-app-from-scratch-1920/week-3/)
+
 ## Functionalities
 
 The main functionality of the app is displaying the most popular tracks of an artists. [Spotify](https://www.spotify.com/) currently has this feature implemented, but with limitations. Spotify only showcases the top 10 most popular tracks of an artist on their page. This app also showcases the most popluar tracks, but without the limitation of 10 tracks.
