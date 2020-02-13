@@ -1,6 +1,6 @@
 # Spotify Artists Best-Of Showcase
 
-![Preview](img\website-preview.png)
+![Preview](\img\website-preview.png)
 
 ## Live Demo's
 
@@ -14,7 +14,7 @@
 
 The main functionality of the app is displaying the most popular tracks of an artists. [Spotify](https://www.spotify.com/) currently has this feature implemented, but with limitations. Spotify only showcases the top 10 most popular tracks of an artist on their page. This app also showcases the most popluar tracks, but without the limitation of 10 tracks.
 
-![Overview](img\camo_krooked_most_popluar.png)
+![Overview](\img\camo_krooked_most_popluar.png)
 
 ## Actor diagram
  
@@ -29,7 +29,7 @@ The main functionality of the app is displaying the most popular tracks of an ar
 <details>
 <summary>Interaction diagram</summary>
 
-![Interaction diagram](img\interaction-diagram.png)
+![Interaction diagram](\img\interaction-diagram.png)
 </details>
 
 ## API
