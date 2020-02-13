@@ -2,10 +2,10 @@
 ## Live Demo's
 
 [Week 1](https://meessour.github.io/web-app-from-scratch-1920/week-1/)
-[Preview](./img/website-preview-week-1.png)
+![Preview](./img/website-preview-week-1.png)
 
 [Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2/)
-[Preview](./img/website-preview-week-2.png)
+![Preview](./img/website-preview-week-2.png)
 
 [Week 3](https://meessour.github.io/web-app-from-scratch-1920/week-3/)
 
