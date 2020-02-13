@@ -22,6 +22,14 @@ The main functionality of the app is displaying the most popular tracks of an ar
 ![Actor diagram](../)
 </details>
 
+## Interaction diagram
+ 
+<details>
+<summary>Interaction diagram</summary>
+
+![Interaction diagram](img\interaction-diagram.png)
+</details>
+
 ## API
 
 [The Spotify Web API](https://developer.spotify.com/documentation/web-api/) Based on simple REST principles, the Spotify Web API endpoints return JSON metadata about music artists, albums, and tracks, directly from the Spotify Data Catalogue.
@@ -57,14 +65,6 @@ Run local server
 ```bash
 hs
 ```
-
-## Interaction diagram
- 
-<details>
-<summary>Interaction diagram</summary>
-
-![Interaction diagram](../)
-</details>
 
 ## Best practices & Design patterns
 
