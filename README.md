@@ -7,11 +7,10 @@
 
 ![Preview](./img/website-preview-week-1.png)
 </details>
-<summary>Click here to see a preview of Week 2</summary>
 
 [Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2/)
 <details>
-<summary>Click here to see a preview of Week 3 (WIP)</summary>
+<summary>Click here to see a preview of Week 2</summary>
 
 ![Preview](./img/website-preview-week-2.png)
 </details>
@@ -36,9 +35,8 @@ The main functionality of the app is displaying the most popular tracks of an ar
 </details>
 
 ## Interaction diagram
- <summary>Click here to show the interaction diagram</summary>
-
 <details>
+<summary>Click here to show the interaction diagram</summary>
 
 ![Interaction diagram](./img/interaction-diagram.png)
 </details>
