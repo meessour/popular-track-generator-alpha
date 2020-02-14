@@ -3,12 +3,15 @@
 
 [Week 1](https://meessour.github.io/web-app-from-scratch-1920/week-1/)
 <details>
+<summary>Click here to see a preview of Week 1</summary>
 
 ![Preview](./img/website-preview-week-1.png)
 </details>
+<summary>Click here to see a preview of Week 2</summary>
 
 [Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2/)
 <details>
+<summary>Click here to see a preview of Week 3 (WIP)</summary>
 
 ![Preview](./img/website-preview-week-2.png)
 </details>
@@ -19,6 +22,7 @@
 
 The main functionality of the app is displaying the most popular tracks of an artists. [Spotify](https://www.spotify.com/) currently has this feature implemented, but with limitations. Spotify only showcases the top 10 most popular tracks of an artist on their page. This app also showcases the most popluar tracks, but without the limitation of 10 tracks.
 <details>
+<summary>Click here to show example</summary>
 
 ![Overview](./img/camo_krooked_most_popluar.png)
 </details>
@@ -26,12 +30,14 @@ The main functionality of the app is displaying the most popular tracks of an ar
 ## Actor diagram
  
 <details>
+<summary>Click here to show the actor diagram</summary>
 
 ![Actor diagram](./img/actor-diagram.png)
 </details>
 
 ## Interaction diagram
- 
+ <summary>Click here to show the interaction diagram</summary>
+
 <details>
 
 ![Interaction diagram](./img/interaction-diagram.png)
