@@ -1,4 +1,4 @@
-import * as TemplateArtistResult from './modules/template-artists-result.js';
+import * as TemplateEngine from './modules/template-engine.js';
 import * as Api from './modules/api.js';
 import * as Parser from './modules/parser.js';
 import * as LocalStorage from './modules/local-storage.js';
@@ -58,7 +58,7 @@ async function setMostPopularTracks(artistId) {
     if (!tracks) { console.log("tracks are undefined"); return }
 
     // Fill in and get the template with the search results
-    const mostPopularTracksHtml = TemplateArtistResult.getMostPopularTracksTemplate(tracks);
+    const mostPopularTracksHtml = TemplateEngine.getMostPopularTracksTemplate(tracks);
 
     if (!mostPopularTracksHtml) { console.log("mostPopularTracksHtml is undefined"); return }
 
@@ -101,7 +101,7 @@ async function searchArtistInput(input) {
     if (!artists) { console.log("Artists is undefined"); return }
 
     // Fill in and get the template with the search results
-    const searchResultsHtml = TemplateArtistResult.getArtistSearchResultsTemplate(artists);
+    const searchResultsHtml = TemplateEngine.getArtistSearchResultsTemplate(artists);
 
     if (!searchResultsHtml) { console.log("searchResultsHtml is undefined"); return }
 
