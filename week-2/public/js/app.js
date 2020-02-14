@@ -21,7 +21,7 @@ artistsNameInput.addEventListener("input", function () {
     if (INPUT && INPUT !== "" && INPUT.length) {
         searchArtistInput(INPUT);
     } else {
-        clearArtistItems()
+        clearSearch()
         console.log("Input is empty");
     }
 });
