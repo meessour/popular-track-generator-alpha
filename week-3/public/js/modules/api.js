@@ -3,13 +3,13 @@ async function fetchToken() {
 
     const url = "https://accounts.spotify.com/api/token"
     const requestType = "POST"
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
 
         var xhr = new XMLHttpRequest();
         xhr.open(requestType, url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.setRequestHeader("Authorization", "Basic " + token);
-        xhr.onload = function (e) {
+        xhr.onload = function(e) {
             // Ready state 4 = DONE, the operation is complete
             if (xhr.readyState === 4) {
                 // On success
@@ -24,8 +24,6 @@ async function fetchToken() {
                     const responseText = JSON.parse(xhr.responseText)
 
                     if (responseText) {
-                        console.log("ja", responseText);
-
                         resolve(responseText)
                     }
                 } else {
@@ -34,7 +32,7 @@ async function fetchToken() {
                 }
             }
         };
-        xhr.onerror = function (e) {
+        xhr.onerror = function(e) {
             console.log("Fetching token was not successful, error: ", xhr.statusText);
             return
         };
@@ -54,15 +52,16 @@ function fetchArtists(input, token) {
     const maxItems = 5
 
     const finalUrl = `${baseUrl}search?q=${input}&type=${searchType}&limit=${maxItems}`
+    const encodedFinalUrl = encodeURI(finalUrl);
 
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
-        xhr.open(requestType, finalUrl, true);
+        xhr.open(requestType, encodedFinalUrl, true);
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.setRequestHeader("Authorization", "Bearer " + token);
-        xhr.onload = function (e) {
-            // Ready state 4 = DONE, the operation is completen
+        xhr.onload = function(e) {
+            // Ready state 4 = DONE, the operation is complete
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     // Check if response is not undefined
@@ -83,41 +82,38 @@ function fetchArtists(input, token) {
                 }
             }
         };
-        xhr.onerror = function (e) {
+        xhr.onerror = function(e) {
             reject(this.statusText);
         };
         xhr.send();
     })
 }
 
-async function fetchTracks(artistId, token) {
-    if (!artistId) { console.log("artistId is undefined"); return; }
-    if (!token) { console.log("token is undefined"); return; }
+async function fetchArtistNameById(artistId, token) {
+    const requestType = "GET"
+    const finalUrl = `https://api.spotify.com/v1/artists/${artistId}`
 
-    const baseUrl = "https://api.spotify.com/v1/";
-    const requestType = "GET";
-    const country = "US";
-
-    const finalUrl = `${baseUrl}artists/${artistId}/top-tracks?country=${country}`;
-
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open(requestType, finalUrl, true);
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.setRequestHeader("Authorization", "Bearer " + token);
-        xhr.onload = function (e) {
-            // Ready state 4 = DONE, the operation is completen
+        xhr.onload = function(e) {
+            // Ready state 4 = DONE, the operation is complete
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     // Check if response is not undefined
                     if (xhr && xhr.responseText) {
                         // Parse the data to a JSON object
-                        const parsedData = JSON.parse(xhr.responseText);
+                        const parsedData = JSON.parse(xhr.responseText)
 
                         // Check if the items of artists is an Array
-                        if (parsedData && Array.isArray(parsedData.tracks)) {
-                            resolve(parsedData.tracks)
+                        if (parsedData && parsedData.name) {
+
+                            resolve(parsedData.name)
+                        } else {
+                            reject(this.statusText);
                         }
                     } else {
                         reject(this.statusText);
@@ -128,11 +124,62 @@ async function fetchTracks(artistId, token) {
                 }
             }
         };
-        xhr.onerror = function (e) {
+        xhr.onerror = function(e) {
             reject(this.statusText);
         };
         xhr.send();
     })
 }
 
-export { fetchToken, fetchArtists, fetchTracks }
+async function fetchTracksByName(artistName, token) {
+
+    const baseUrl = "https://api.spotify.com/v1/"
+    const requestType = "GET"
+    const encodedArtistName = encodeURIComponent(artistName);
+
+    const searchQuery = `artist%3A%22${encodedArtistName}%22`
+    const searchType = "track"
+
+    // Load 50 tracks
+    const maxItems = 50
+
+    const finalUrl = `${baseUrl}search?q=${searchQuery}&type=${searchType}&limit=${maxItems}`
+
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(requestType, finalUrl, true);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+        xhr.onload = function(e) {
+            // Ready state 4 = DONE, the operation is complete
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Check if response is not undefined
+                    if (xhr && xhr.responseText) {
+                        // Parse the data to a JSON object
+                        const parsedData = JSON.parse(xhr.responseText)
+
+                        // Check if the items of artists is an Array
+                        if (parsedData && parsedData.tracks && Array.isArray(parsedData.tracks.items)) {
+                            resolve(parsedData.tracks.items)
+                        } else {
+                            reject(this.statusText);
+                        }
+                    } else {
+                        reject(this.statusText);
+                    }
+
+                } else {
+                    reject(this.statusText);
+                }
+            }
+        };
+        xhr.onerror = function(e) {
+            reject(this.statusText);
+        };
+        xhr.send();
+    })
+}
+
+export { fetchToken, fetchArtists, fetchArtistNameById, fetchTracksByName }

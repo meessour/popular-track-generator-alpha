@@ -50,6 +50,7 @@ async function init() {
 }
 
 async function setMostPopularTracks(artistId) {
+
     if (!artistId) { setUserFeedback(true, "Could not search tracks for artist"); return }
 
     // Get the token
@@ -61,25 +62,21 @@ async function setMostPopularTracks(artistId) {
         }
     }
 
-    // Fetch the token
-    let tracks = await Api.fetchTracks(artistId, token)
+    // Fetch the artist's information
+    let artist = await Api.fetchArtistNameById(artistId, token)
+
+    if (!artist) { setUserFeedback(true, "Artist's information could not be loaded"); return }
+
+    // Fetch the tracks
+    let tracks = await Api.fetchTracksByName(artist, token)
     if (!tracks) { setUserFeedback(true, "Artist's tracks could not be loaded"); return }
-
-    let artistName = tracks[0] &&
-        tracks[0].artists &&
-        tracks[0].artists[0] &&
-        tracks[0].artists[0].name ?
-        tracks[0].artists[0].name :
-        null
-
-    if (!artistName) { setUserFeedback(true, "Artist's name could not be loaded"); return }
 
     // Fill in and get the template with the search results
     const mostPopularTracksHtml = TemplateEngine.getMostPopularTracksTemplate(tracks);
 
     if (!mostPopularTracksHtml) { setUserFeedback(true, "Could not load results in list"); return }
 
-    setUserFeedback(false, "Showing results for " + artistName)
+    setUserFeedback(false, "Showing results for " + artist)
 
     // Fill the options in the list with results
     mostPopularTracks.innerHTML = mostPopularTracksHtml;
@@ -132,8 +129,6 @@ async function searchArtistInput(input) {
 }
 
 function setUserFeedback(isError, message) {
-    console.log("Beginning", userFeedbackContainer);
-
     // Set container color either the error or success color
     isError ?
         userFeedbackContainer.classList.add("error-color") :
@@ -145,14 +140,13 @@ function setUserFeedback(isError, message) {
     // Show user feedback
     userFeedbackContainer.classList.add("show-user-feedback");
 
+    // Show the feedback notification for 1.75 seconds
     setTimeout(function() {
         userFeedbackContainer.classList.remove("error-color")
         userFeedbackContainer.classList.remove("success-color")
         userFeedbackContainer.classList.remove("show-user-feedback")
 
         userFeedbackText.innerHTML = ""
-        console.log("End", userFeedbackContainer);
-
     }, 1750);
 
 }
