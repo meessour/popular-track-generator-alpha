@@ -71,6 +71,11 @@ async function setMostPopularTracks(artistId) {
     let tracks = await Api.fetchTracksByName(artist, token)
     if (!tracks) { setUserFeedback(true, "Artist's tracks could not be loaded"); return }
 
+    console.log("all tracks", tracks);
+    
+    let parsedTracks = await Parser.filterTracks(tracks, artistId)
+    if (!parsedTracks) { setUserFeedback(true, "Tracks did not parse successfully"); return }
+
     // Fill in and get the template with the search results
     const mostPopularTracksHtml = TemplateEngine.getMostPopularTracksTemplate(tracks);
 

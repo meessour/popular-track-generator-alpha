@@ -42,7 +42,9 @@ body, html {
 
 .track-list-position {
     color: #fff;
-    margin: 0 16px 32px 0;
+    margin: 0 12px 32px 0;
+    text-align: left;
+    min-width: 12px;
 }
 
 #search-result, #most-popular-tracks, .user-feedback-container {
@@ -148,6 +150,7 @@ body, html {
     overflow: hidden;
     white-space: nowrap;
     max-width: 360px;
+    text-align: left;
 }
 
 .track-name {
@@ -176,6 +179,7 @@ body, html {
 .artist-description, .track-description {
     align-content: space-between;
     height: 100%;
+    overflow: hidden;
 }
 
 .followers {
