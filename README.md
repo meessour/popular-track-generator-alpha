@@ -84,6 +84,11 @@ hs
 ## Wishlist
 [] Filter for excluding/including (re)mixes
 [] Filter for excluding/including radio edits
+[] Let the user choose how many tracks need to be shown
+[] Create playlist of all the tracks
+[] Replace the original generated playlist by the newly looked up artist
+[] Let the user choose between "create new playlist" and "replace old one"
+
 
 ## Licence
 MIT © [Mees Sour](https://github.com/meessour)
