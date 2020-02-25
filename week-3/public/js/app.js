@@ -51,13 +51,13 @@ async function init() {
 
 async function setMostPopularTracks(artistId) {
 
-    if (!artistId) { setUserFeedback(true, "Could not search tracks for artist"); return }
+    if (!artistId) { setUserFeedback("Could not search tracks for artist"); return }
 
     // Get the token
     if (!token) {
         await init()
         if (!token) {
-            setUserFeedback(true, "Could not fetch items from Spotify");
+            setUserFeedback("Could not fetch items from Spotify");
             return
         }
     }
@@ -65,23 +65,23 @@ async function setMostPopularTracks(artistId) {
     // Fetch the artist's information
     let artist = await Api.fetchArtistNameById(artistId, token)
 
-    if (!artist) { setUserFeedback(true, "Artist's information could not be loaded"); return }
+    if (!artist) { setUserFeedback("Artist's information could not be loaded"); return }
 
     // Fetch the tracks
     let tracks = await Api.fetchTracksByName(artist, token)
-    if (!tracks) { setUserFeedback(true, "Artist's tracks could not be loaded"); return }
+    if (!tracks) { setUserFeedback("Artist's tracks could not be loaded"); return }
 
-    console.log("all tracks", tracks);
-    
+    // Parse the tracks 
     let parsedTracks = await Parser.filterTracks(tracks, artistId)
-    if (!parsedTracks) { setUserFeedback(true, "Tracks did not parse successfully"); return }
+    if (!parsedTracks) { setUserFeedback("Tracks did not parse successfully"); return }
 
     // Fill in and get the template with the search results
-    const mostPopularTracksHtml = TemplateEngine.getMostPopularTracksTemplate(tracks);
+    const mostPopularTracksHtml = TemplateEngine.getMostPopularTracksTemplate(parsedTracks);
+    if (!mostPopularTracksHtml) { setUserFeedback("Could not load results in list"); return }
 
-    if (!mostPopularTracksHtml) { setUserFeedback(true, "Could not load results in list"); return }
-
-    setUserFeedback(false, "Showing results for " + artist)
+    // TO DO FIX TEMPALTEING PLX
+    // setUserFeedback("Showing results for " + artist, false)
+    setUserFeedback(`${parsedTracks.length} most tracks loaded for ${artist}`, false)
 
     // Fill the options in the list with results
     mostPopularTracks.innerHTML = mostPopularTracksHtml;
@@ -90,11 +90,11 @@ async function setMostPopularTracks(artistId) {
 async function getTokenData() {
     // Fetch the token
     const tokenData = await Api.fetchToken()
-    if (!tokenData) { setUserFeedback(true, "Could not fetch items from Spotify"); return }
+    if (!tokenData) { setUserFeedback("Could not fetch items from Spotify"); return }
 
     // Parse the token
     const parsedToken = Parser.parseTokenData(tokenData)
-    if (!parsedToken || !parsedToken.accessToken || !parsedToken.expiresIn) { setUserFeedback(true, "Could not fetch items from Spotify"); return }
+    if (!parsedToken || !parsedToken.accessToken || !parsedToken.expiresIn) { setUserFeedback("Could not fetch items from Spotify"); return }
 
     return parsedToken
 }
@@ -112,20 +112,20 @@ async function searchArtistInput(input) {
     if (!token) {
         await init()
         if (!token) {
-            setUserFeedback(true, "Could not fetch items from Spotify");
+            setUserFeedback("Could not fetch items from Spotify");
             return
         }
     }
 
     // Get the artists
     const artists = await Api.fetchArtists(input, token)
-    if (!artists) { setUserFeedback(true, "Artist's could not be loaded loaded"); return }
+    if (!artists) { setUserFeedback("Artist's could not be loaded loaded"); return }
 
     // Fill in and get the template with the search results
     const searchResultsHtml = TemplateEngine.getArtistSearchResultsTemplate(artists);
 
     if (!searchResultsHtml) {
-        setUserFeedback(true, "Could not load results"), clearSearchResults();
+        setUserFeedback("Could not load results"), clearSearchResults();
         return
     }
 
@@ -133,7 +133,8 @@ async function searchArtistInput(input) {
     searchResult.innerHTML = searchResultsHtml;
 }
 
-function setUserFeedback(isError, message) {
+// Show a snackbar looking feedback message. Standard message type is an error, unless told otherwise
+function setUserFeedback(message, isError = true) {
     // Set container color either the error or success color
     isError ?
         userFeedbackContainer.classList.add("error-color") :

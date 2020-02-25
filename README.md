@@ -81,9 +81,9 @@ Run local server
 hs
 ```
 
-## Best practices & Design patterns
-
 ## Wishlist
+[] Filter for excluding/including (re)mixes
+[] Filter for excluding/including radio edits
 
 ## Licence
 MIT © [Mees Sour](https://github.com/meessour)
