@@ -82,13 +82,14 @@ hs
 ```
 
 ## Wishlist
-[] Filter for excluding/including (re)mixes
-[] Filter for excluding/including radio edits
-[] Let the user choose how many tracks need to be shown
-[] Create playlist of all the tracks
-[] Replace the original generated playlist by the newly looked up artist
-[] Let the user choose between "create new playlist" and "replace old one"
+- [] Filter for excluding/including (re)mixes
+- [] Filter for excluding/including radio edits
+- [] Let the user choose how many tracks need to be shown
+- [] Create playlist of all the tracks
+- [] Replace the original generated playlist by the newly looked up artist
+- [] Let the user choose between "create new playlist" and "replace old one"
 
+- [] Light weight web player that only works if musix plays on external device. Controllable by media keys
 
 ## Licence
 MIT © [Mees Sour](https://github.com/meessour)
