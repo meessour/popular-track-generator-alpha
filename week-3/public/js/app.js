@@ -30,7 +30,7 @@ artistsNameInput.addEventListener("input", function() {
 
 // check if value is a valid string with content
 function isString(value) {
-    return value && value !== "" && value.length
+    return value && value !== "" && value.length > 0 && value.trim().length > 0
 }
 
 routie(':id', function(id) {
