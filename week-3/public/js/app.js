@@ -6,15 +6,11 @@ import * as LocalStorage from './modules/local-storage.js';
 // Routie, a library used for handling routing
 import './libs/routie.min.js';
 
-init()
-
 const artistsNameInput = document.getElementById("artist-name-input")
 const searchResult = document.getElementById("search-result")
 const mostPopularTracks = document.getElementById("most-popular-tracks")
 const userFeedbackContainer = document.getElementById("user-feedback-container")
 const userFeedbackText = document.getElementById("user-feedback-text")
-
-let token
 
 artistsNameInput.addEventListener("input", function () {
     const input = artistsNameInput.value
@@ -39,28 +35,11 @@ routie(':id', function (id) {
     clearSearchResults()
 });
 
-async function init() {
-    // Get the token
-    token = await LocalStorage.getTokenFromLocalStorage();
-
-    if (!token) {
-        const tokenData = await getTokenData();
-        setToken(tokenData);
-    }
-}
-
 async function setMostPopularTracks(artistId) {
-
     if (!artistId) { setUserFeedback("Could not search tracks for artist"); return }
 
-    // Get the token
-    if (!token) {
-        await init()
-        if (!token) {
-            setUserFeedback("Could not fetch items from Spotify");
-            return
-        }
-    }
+    const token = await getToken();
+    if (!token) { setUserFeedback("Token could not be set"); return }
 
     // Fetch the artist's information
     // CAN MAYBE BE REMOVED
@@ -137,7 +116,7 @@ async function setMostPopularTracks(artistId) {
 async function getTokenData() {
     // Fetch the token
     const tokenData = await Api.fetchToken()
-    if (!tokenData) { setUserFeedback("Could not fetch items from Spotify"); return }
+    if (!tokenData) { setUserFeedback("Could not fetch token from Spotify"); return }
 
     // Parse the token
     const parsedToken = Parser.parseTokenData(tokenData)
@@ -274,14 +253,8 @@ function setToken(tokenData) {
 }
 
 async function searchArtistInput(input) {
-    // Get the token
-    if (!token) {
-        await init()
-        if (!token) {
-            setUserFeedback("Could not fetch items from Spotify");
-            return
-        }
-    }
+    const token = await getToken();
+    if (!token) { setUserFeedback("Token could not be set"); return }
 
     // Get the artists
     const artists = await Api.fetchArtists(input, token)
@@ -298,6 +271,29 @@ async function searchArtistInput(input) {
     // Fill the options in the list with results
     searchResult.innerHTML = searchResultsHtml;
 }
+
+async function getToken() {
+    // Get the token
+    const token = await LocalStorage.getTokenFromLocalStorage();
+
+    if (token) {
+        return token
+    } else {
+        const tokenRefreshState = refreshToken();
+        if (!tokenRefreshState) { setUserFeedback("Token could not be set"); return }
+
+        return await LocalStorage.getTokenFromLocalStorage();
+    }
+}
+
+async function refreshToken() {
+    const tokenData = await getTokenData();
+    if (!tokenData) { setUserFeedback("Token could not be set while refreshing token"); return }
+
+    setToken(tokenData);
+    return true;
+}
+
 
 // Show a snackbar looking feedback message. Standard message type is an error, unless told otherwise
 function setUserFeedback(message, isError = true) {
