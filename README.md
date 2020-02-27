@@ -88,6 +88,7 @@ hs
 - [ ] Create playlist of all the tracks
 - [ ] Replace the original generated playlist by the newly looked up artist
 - [ ] Let the user choose between "create new playlist" and "replace old one"
+- [ ] A better way of hiding the token
 
 - [ ] Light weight web player that only works if musix plays on external device. Controllable by media keys
 
