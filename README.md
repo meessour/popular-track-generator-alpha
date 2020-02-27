@@ -32,9 +32,15 @@ The main functionality of the app is displaying the most popular tracks of an ar
 ## Actor diagram
  
 <details>
-<summary>Click here to show the actor diagram</summary>
+<summary>Actor diagram (Week 2)</summary>
 
-![Actor diagram](./img/actor-diagram.png)
+![Actor diagram](./img/actor-diagram-week-2.png)
+</details>
+
+<details>
+<summary>Actor diagram (Week 3)</summary>
+
+![Actor diagram](./img/actor-diagram-week-3.png)
 </details>
 
 ## Interaction diagram
