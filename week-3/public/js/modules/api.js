@@ -1,5 +1,5 @@
 async function fetchToken() {
-    const token = "Mjc3OWY3YmYwOTAzNDMxZWE2MTJkODFhNDM3YzY5MWI6YTUzMjdmNzkxZjQxNGNhMWFlNjE0NmUyMDkyODc5YWE="
+    const token = "Mjc3OWY3YmYwOTAzNDMxZWE2MTJkODFhNDM3YzY5MWI6Yjc2ZGEyODMxODM5NDU3ZGI4N2Q0NzJmNmI2MDdiYzY="
 
     const url = "https://accounts.spotify.com/api/token"
     const requestType = "POST"
