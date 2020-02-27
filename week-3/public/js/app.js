@@ -207,7 +207,7 @@ async function getToken() {
     if (token) {
         return token
     } else {
-        const tokenRefreshState = refreshToken();
+        const tokenRefreshState = await refreshToken();
         if (!tokenRefreshState) { setUserFeedback("Token could not be set"); return }
 
         return await LocalStorage.getTokenFromLocalStorage();
