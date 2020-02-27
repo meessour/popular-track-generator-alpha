@@ -45,9 +45,15 @@ The main functionality of the app is displaying the most popular tracks of an ar
 
 ## Interaction diagram
 <details>
-<summary>Click here to show the interaction diagram</summary>
+<summary>Interaction diagram (Week 2)</summary>
 
-![Interaction diagram](./img/interaction-diagram.png)
+![Interaction diagram](./img/interaction-diagram-week-2.png)
+</details>
+
+<details>
+<summary>Interaction diagram (Week 3)</summary>
+
+![Interaction diagram](./img/interaction-diagram-week-3.png)
 </details>
 
 ## API
