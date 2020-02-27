@@ -1,26 +1,25 @@
 # Spotify Artists Best-Of Showcase
-## Live Demo's
+## Previews and live demo's
 
-[Week 1](https://meessour.github.io/web-app-from-scratch-1920/week-1/)
 <details>
 <summary>Week 1 preview</summary>
 
 ![Preview](./img/website-preview-week-1.png)
 </details>
 
-[Week 2](https://meessour.github.io/web-app-from-scratch-1920/week-2/)
 <details>
 <summary>Week 2 preview</summary>
 
 ![Preview](./img/website-preview-week-2.png)
 </details>
 
-[Week 3](https://meessour.github.io/web-app-from-scratch-1920/week-3/)
+[Week 3 Demo](https://meessour.github.io/web-app-from-scratch-1920/week-3/)
 <details>
 <summary>Week 3 preview</summary>
 
 ![Preview](./img/website-preview-week-3.png)
 </details>
+
 ## Functionalities
 
 The main functionality of the app is displaying the most popular tracks of an artists. [Spotify](https://www.spotify.com/) currently has this feature implemented, but with limitations. Spotify only showcases the top 10 most popular tracks of an artist on their page. This app also showcases the most popluar tracks, but without the limitation of 10 tracks.
