@@ -82,8 +82,8 @@ hs
 ```
 
 ## Wishlist
-- [ ] Filter for excluding/including (re)mixes
-- [ ] Filter for excluding/including radio edits
+- [ ] Filter for excluding/including (re)mixes, radio edits, live performances, extended versions, features, remastered versions, album versions, etc.
+
 - [ ] Let the user choose how many tracks need to be shown
 - [ ] Create playlist of all the tracks
 - [ ] Replace the original generated playlist by the newly looked up artist
