@@ -42,7 +42,6 @@ async function setMostPopularTracks(artistId) {
     if (!token) { setUserFeedback("Token could not be set"); return }
 
     // Fetch the artist's information
-    // CAN MAYBE BE REMOVED
     let artist = await Api.fetchArtistNameById(artistId, token)
     if (!artist) { setUserFeedback("Artist's information could not be loaded"); return }
 
@@ -50,56 +49,42 @@ async function setMostPopularTracks(artistId) {
     let albums = await getAllAlbums(artistId, token)
     if (!albums) { setUserFeedback("Artist's albums could not be loaded"); return }
 
-    console.log("all albums: ", albums);
-
     let parsedAlbums = await Parser.filterAlbumCompilations(albums)
     if (!parsedAlbums) { setUserFeedback("Albums did not parse successfully"); return }
-
-    console.log("all parsedAlbums: ", parsedAlbums);
 
     let albumIds = await Parser.getAlbumIds(parsedAlbums)
     if (!albumIds) { setUserFeedback("Albums Ids did not parse successfully"); return }
 
-    console.log("all albumIds: ", albumIds);
+    const albumsWithTrackInfoCallLimit = 20
+    const albumsWithTrackInfoCallType = "albums"
 
     // Fetch the albums with simplified track information
-    let albumsWithTrackInfo = await getAllAlbumsWithTrackInfo(albumIds, token)
+    let albumsWithTrackInfo = await getItemsWithCallLimit(albumIds, albumsWithTrackInfoCallLimit, albumsWithTrackInfoCallType, token)
     if (!albumsWithTrackInfo) { setUserFeedback("Artist's albums with detailed track info could not be loaded"); return }
-
-    console.log("all albumsWithTrackInfo: ", albumsWithTrackInfo);
 
     let parsedAlbumsWithTrackInfo = await Parser.filterTracksFromAlbums(albumsWithTrackInfo)
     if (!parsedAlbumsWithTrackInfo) { setUserFeedback("Albums with track info did not parse successfully"); return }
-
-    console.log("all parsedAlbumsWithTrackInfo: ", parsedAlbumsWithTrackInfo);
 
     // Filter out the tracks not made by the artist
     let simplifiedTracksOnlyFromArtist = await Parser.filterRelevantTracks(parsedAlbumsWithTrackInfo, artistId)
     if (!simplifiedTracksOnlyFromArtist) { setUserFeedback("Simplified track ids only from the artist did not parse successfully"); return }
 
-    console.log("all parsedTracks after parse: ", simplifiedTracksOnlyFromArtist);
-
     // Get a list of all the track ids
     let simplifiedTrackIds = await Parser.getTrackIds(simplifiedTracksOnlyFromArtist)
     if (!simplifiedTrackIds) { setUserFeedback("Simplified track ids did not parse successfully"); return }
 
-    console.log("all simplifiedTrackIds: ", simplifiedTrackIds);
+    const fullInfoTracksCallLimit = 50
+    const fullInfoTracksCallType = "tracks"
 
     // Fetch the tracks with detailed information
-    let fullInfoTracks = await getFullInfoTracks(simplifiedTrackIds, token)
+    let fullInfoTracks = await getItemsWithCallLimit(simplifiedTrackIds, fullInfoTracksCallLimit, fullInfoTracksCallType, token)
     if (!fullInfoTracks) { setUserFeedback("Artist's tracks with detailed track info could not be loaded"); return }
-
-    console.log("all fullInfoTracks: ", fullInfoTracks);
 
     let parsedFullInfoTracks = await Parser.filterDuplicateTracks(fullInfoTracks)
     if (!parsedFullInfoTracks) { setUserFeedback("Tracks with full info did not parse successfully"); return }
 
-    console.log("all parsedFullInfoTracks: ", parsedFullInfoTracks);
-
     let sortedFullInfoTracksByPopularity = await Parser.sortTracksByPopularity(parsedFullInfoTracks)
     if (!sortedFullInfoTracksByPopularity) { setUserFeedback("Sorting tracks by popularity did not went successful"); return }
-
-    console.log("all sortedFullInfoTracksByPopularity: ", sortedFullInfoTracksByPopularity);
 
     // Fill in and get the template with the search results
     const mostPopularTracksHtml = TemplateEngine.getMostPopularTracksTemplate(sortedFullInfoTracksByPopularity);
@@ -153,101 +138,44 @@ async function getAllAlbums(artistId, token) {
     return allLoadedAlbums
 }
 
-async function getAllAlbumsWithTrackInfo(albumIds, token) {
-    // Check if the list albums has items 
-    if (!Array.isArray(albumIds) || !albumIds.length) return
+// Used to fetch items where the API has a limit on items it can handle in the header
+async function getItemsWithCallLimit(itemIds, limit, itemType, token) {
+    // Check if the list has items 
+    if (!Array.isArray(itemIds) || !itemIds.length) return
 
-    const allAlbums = []
-
-    // The amount of albums ids that spotify can handle per call 
-    const itemLimit = 20
+    const allItems = []
 
     // The amount of calls that need to be made 
-    const amountOfCalls = Math.ceil(albumIds.length / itemLimit)
+    const amountOfCalls = Math.ceil(itemIds.length / limit)
 
     for (let i = 0; i < amountOfCalls; i++) {
-        const start = i * itemLimit
-        const end = (i * itemLimit) + itemLimit
+        const start = i * limit
+        const end = (i * limit) + limit
 
         // list containing not more than the given item limit
-        const albumsTrimmed = albumIds.slice(start, end);
+        const trimmedList = itemIds.slice(start, end);
 
         // A list containing ids seperated by commas
-        const albumsTrimmedString = albumsTrimmed.toString();
+        const trimmedListString = trimmedList.toString();
 
-        let detailedAlbums = await Api.fetchAlbumsByAlbumIds(token, albumsTrimmedString)
-        if (!detailedAlbums) { setUserFeedback("Artist's albums with detailed track info could not be loaded while fething"); return }
+        let fetchedItems = await Api.fetchItemsByItemIds(token, itemType, trimmedListString)
+        if (!fetchedItems) { setUserFeedback("Items of type " + itemType + " could not be fetched"); return }
 
-        allAlbums.push.apply(allAlbums, detailedAlbums.albums);
+        if (itemType === "albums") {
+            allItems.push.apply(allItems, fetchedItems.albums);
+        } else if (itemType === "tracks") {
+            allItems.push.apply(allItems, fetchedItems.tracks);
+        } else {
+            setUserFeedback("Unknown itemType");
+            return
+        }
     }
 
-    return allAlbums.length ? allAlbums : undefined
+    return allItems.length ? allItems : undefined
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function getFullInfoTracks(simplifiedTrackIds, token) {
-    // Check if the track list has items 
-    if (!Array.isArray(simplifiedTrackIds) || !simplifiedTrackIds.length) return
-
-    const itemType = "tracks"
-    const allTracks = []
-
-    // The amount of track ids that spotify can handle per call 
-    const itemLimit = 50
-
-    // The amount of calls that need to be made 
-    const amountOfCalls = Math.ceil(simplifiedTrackIds.length / itemLimit)
-
-    for (let i = 0; i < amountOfCalls; i++) {
-        const start = i * itemLimit
-        const end = (i * itemLimit) + itemLimit
-
-        // list containing not more than the given item limit
-        const tracksTrimmed = simplifiedTrackIds.slice(start, end);
-
-        // A list containing ids seperated by commas
-        const tracksTrimmedString = tracksTrimmed.toString();
-
-        let detailedTracks = await Api.fetchItemsByItemIds(token, itemType, tracksTrimmedString)
-        if (!detailedTracks) { setUserFeedback("Artist's detailed track info could not be loaded while fething"); return }
-
-        allTracks.push.apply(allTracks, detailedTracks.tracks);
-    }
-
-    return allTracks.length ? allTracks : undefined
-}
-
-
-
-
-
-
-
-
-
-
-
 
 function setToken(tokenData) {
     if (tokenData && tokenData.accessToken && tokenData.expiresIn) {
-        token = tokenData.accessToken
-
         LocalStorage.setTokenInLocalStorage(tokenData.accessToken, tokenData.expiresIn)
     }
 }
@@ -293,7 +221,6 @@ async function refreshToken() {
     setToken(tokenData);
     return true;
 }
-
 
 // Show a snackbar looking feedback message. Standard message type is an error, unless told otherwise
 function setUserFeedback(message, isError = true) {
