@@ -92,7 +92,7 @@ async function setMostPopularTracks(artistId) {
 
     // TO DO FIX TEMPALTEING PLX
     // setUserFeedback("Showing results for " + artist, false)
-    setUserFeedback(`${sortedFullInfoTracksByPopularity.length} most tracks loaded for ${artist}`, false)
+    setUserFeedback(`${sortedFullInfoTracksByPopularity.length} most popular tracks loaded for: ${artist}`, false)
 
     // Fill the options in the list with results
     mostPopularTracks.innerHTML = mostPopularTracksHtml;
