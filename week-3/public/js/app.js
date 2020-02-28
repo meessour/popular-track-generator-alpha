@@ -186,7 +186,7 @@ async function searchArtistInput(input) {
 
     // Get the artists
     const artists = await Api.fetchArtists(input, token)
-    if (!artists) { setUserFeedback("Artist's could not be loaded loaded"); return }
+    if (!artists) { setUserFeedback("Artist's could not be loaded"); return }
 
     // Fill in and get the template with the search results
     const searchResultsHtml = TemplateEngine.getArtistSearchResultsTemplate(artists);
