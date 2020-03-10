@@ -10,20 +10,6 @@ function parseTokenData(tokenData) {
     return;
 }
 
-// Filters out every album that is a compilation
-function filterAlbumCompilations(albums) {
-    const filteredAlbums = []
-
-    albums.map((album) => {
-        // Check if the album type is a compilation
-        if (album && album.album_type !== "compilation") {
-            filteredAlbums.push(album);
-        };
-    });
-
-    return filteredAlbums.length ? filteredAlbums : undefined;
-}
-
 // Return all the ids of the albums
 function getAlbumIds(albums) {
     const albumIds = []
@@ -102,4 +88,4 @@ function sortTracksByPopularity(tracks) {
     return tracks.sort((a, b) => (a.popularity < b.popularity) ? 1 : ((b.popularity < a.popularity) ? -1 : 0));
 }
 
-export { parseTokenData, filterAlbumCompilations, getAlbumIds, getTrackIds, filterTracksFromAlbums, filterRelevantTracks, filterDuplicateTracks, sortTracksByPopularity };
+export { parseTokenData, getAlbumIds, getTrackIds, filterTracksFromAlbums, filterRelevantTracks, filterDuplicateTracks, sortTracksByPopularity };

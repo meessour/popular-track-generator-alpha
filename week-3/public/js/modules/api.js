@@ -134,10 +134,9 @@ async function fetchArtistNameById(artistId, token) {
 async function fetchAlbumsByArtistId(token, artistId) {
     const baseUrl = "https://api.spotify.com/v1/"
     const requestType = "GET"
-    const includeGroups = "single,album,appears_on"
     const itemsToLoad = 50
 
-    const finalUrl = `${baseUrl}artists/${artistId}/albums?include_groups=${includeGroups}&limit=${itemsToLoad}`
+    const finalUrl = `${baseUrl}artists/${artistId}/albums?limit=${itemsToLoad}`
 
     return new Promise(function (resolve, reject) {
         var xhr = new XMLHttpRequest();

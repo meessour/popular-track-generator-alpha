@@ -49,10 +49,7 @@ async function setMostPopularTracks(artistId) {
     let albums = await getAllAlbums(artistId, token)
     if (!albums) { setUserFeedback("Artist's albums could not be loaded"); return }
 
-    let parsedAlbums = await Parser.filterAlbumCompilations(albums)
-    if (!parsedAlbums) { setUserFeedback("Albums did not parse successfully"); return }
-
-    let albumIds = await Parser.getAlbumIds(parsedAlbums)
+    let albumIds = Parser.getAlbumIds(albums)
     if (!albumIds) { setUserFeedback("Albums Ids did not parse successfully"); return }
 
     const albumsWithTrackInfoCallLimit = 20
@@ -62,15 +59,16 @@ async function setMostPopularTracks(artistId) {
     let albumsWithTrackInfo = await getItemsWithCallLimit(albumIds, albumsWithTrackInfoCallLimit, albumsWithTrackInfoCallType, token)
     if (!albumsWithTrackInfo) { setUserFeedback("Artist's albums with detailed track info could not be loaded"); return }
 
-    let parsedAlbumsWithTrackInfo = await Parser.filterTracksFromAlbums(albumsWithTrackInfo)
+    let parsedAlbumsWithTrackInfo = Parser.filterTracksFromAlbums(albumsWithTrackInfo)
     if (!parsedAlbumsWithTrackInfo) { setUserFeedback("Albums with track info did not parse successfully"); return }
 
     // Filter out the tracks not made by the artist
-    let simplifiedTracksOnlyFromArtist = await Parser.filterRelevantTracks(parsedAlbumsWithTrackInfo, artistId)
+    let simplifiedTracksOnlyFromArtist = Parser.filterRelevantTracks(parsedAlbumsWithTrackInfo, artistId)
     if (!simplifiedTracksOnlyFromArtist) { setUserFeedback("Simplified track ids only from the artist did not parse successfully"); return }
 
+
     // Get a list of all the track ids
-    let simplifiedTrackIds = await Parser.getTrackIds(simplifiedTracksOnlyFromArtist)
+    let simplifiedTrackIds = Parser.getTrackIds(simplifiedTracksOnlyFromArtist)
     if (!simplifiedTrackIds) { setUserFeedback("Simplified track ids did not parse successfully"); return }
 
     const fullInfoTracksCallLimit = 50
@@ -80,14 +78,16 @@ async function setMostPopularTracks(artistId) {
     let fullInfoTracks = await getItemsWithCallLimit(simplifiedTrackIds, fullInfoTracksCallLimit, fullInfoTracksCallType, token)
     if (!fullInfoTracks) { setUserFeedback("Artist's tracks with detailed track info could not be loaded"); return }
 
-    let parsedFullInfoTracks = await Parser.filterDuplicateTracks(fullInfoTracks)
-    if (!parsedFullInfoTracks) { setUserFeedback("Tracks with full info did not parse successfully"); return }
 
-    let sortedFullInfoTracksByPopularity = await Parser.sortTracksByPopularity(parsedFullInfoTracks)
+    let sortedFullInfoTracksByPopularity = Parser.sortTracksByPopularity(fullInfoTracks)
     if (!sortedFullInfoTracksByPopularity) { setUserFeedback("Sorting tracks by popularity did not went successful"); return }
 
+    let parsedFullInfoTracks = Parser.filterDuplicateTracks(sortedFullInfoTracksByPopularity)
+    if (!parsedFullInfoTracks) { setUserFeedback("Tracks with full info did not parse successfully"); return }
+
+
     // Fill in and get the template with the search results
-    const mostPopularTracksHtml = TemplateEngine.getMostPopularTracksTemplate(sortedFullInfoTracksByPopularity);
+    const mostPopularTracksHtml = TemplateEngine.getMostPopularTracksTemplate(parsedFullInfoTracks);
     if (!mostPopularTracksHtml) { setUserFeedback("Could not load results in list"); return }
 
     // TO DO FIX TEMPALTEING PLX
@@ -117,6 +117,8 @@ async function getAllAlbums(artistId, token) {
 
     // The items represent the albums of the artist
     const allLoadedAlbums = firstFetchResponse.items
+
+
 
     // Set the url needed to fetch more albums of the artist (it can be that all albums have been fetched already)
     let nextUrl = firstFetchResponse.next
