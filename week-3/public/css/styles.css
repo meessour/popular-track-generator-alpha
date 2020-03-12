@@ -68,6 +68,7 @@ html {
 #most-popular-tracks,
 .user-feedback-container {
     border-radius: 4px;
+    margin-top: 8px;
     width: 100%;
 }
 
