@@ -6,11 +6,12 @@ import * as LocalStorage from './modules/local-storage.js';
 // Routie, a library used for handling routing
 import './libs/routie.min.js';
 
-const artistsNameInput = document.getElementById("artist-name-input")
-const searchResult = document.getElementById("search-result")
-const mostPopularTracks = document.getElementById("most-popular-tracks")
-const userFeedbackContainer = document.getElementById("user-feedback-container")
-const userFeedbackText = document.getElementById("user-feedback-text")
+const artistsNameInput = document.getElementById("artist-name-input");
+const searchResult = document.getElementById("search-result");
+const mostPopularTracks = document.getElementById("most-popular-tracks");
+const userFeedbackContainer = document.getElementById("user-feedback-container");
+const userFeedbackText = document.getElementById("user-feedback-text");
+const printInfoButton = document.getElementById("print-info-button");
 
 artistsNameInput.addEventListener("input", function () {
     const input = artistsNameInput.value
@@ -23,6 +24,11 @@ artistsNameInput.addEventListener("input", function () {
         clearSearchResults()
     }
 });
+
+// printInfoButton.addEventListener("onclick", function () {
+//     console.log("Clicke don button");
+
+// })
 
 // check if value is a valid string with content
 function isString(value) {

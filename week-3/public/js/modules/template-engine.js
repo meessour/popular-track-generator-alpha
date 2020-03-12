@@ -25,13 +25,25 @@ function getMostPopularTracksTemplate(tracks) {
     let html = "";
 
     tracks.map((track, index) => html +=
-        `<a class="track-item" href=${track.external_urls.spotify}>
-            <p class="track-list-position">${(index + 1)}</p>
-            <img class="track-picture" src=${track.album && track.album.images[0] ? track.album.images[(track.album.images.length - 1)].url : ""} />
+        `
+        <div class="track-container">
+            <div class="track-item" >
+                <p class="track-list-position">${(index + 1)}</p>
+                <img class="track-picture" src=${track.album && track.album.images[0] ? track.album.images[(track.album.images.length - 1)].url : ""} />
                 <div class="track-description">
                     <p class="track-name">${track.name}</p>
                 </div>
-        </a>`
+            </div>
+            <div class="track-actions-container"> 
+                <a class="track-action" onclick='console.log(${JSON.stringify(track)})'> 
+                    <i class="material-icons">print</i>
+                </a>
+                <a class="track-action" href=${track.external_urls.spotify} target="_blank"> 
+                    <i class="material-icons">launch</i>
+                </a>
+            </div>
+        </div>
+        `
     );
 
     return html

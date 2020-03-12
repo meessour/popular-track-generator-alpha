@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
     background-image: url("../../../img/close-up-photography-of-microphone-144429.jpg");
@@ -47,11 +48,40 @@ body, html {
     min-width: 12px;
 }
 
-#search-result, #most-popular-tracks, .user-feedback-container {
-    background-color: #fff;
+.track-actions-container {
+    flex-wrap: wrap;
+    height: 100%;
+    width: 40px;
+}
+
+.track-action {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    margin: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#search-result,
+#most-popular-tracks,
+.user-feedback-container {
     border-radius: 4px;
     width: 100%;
+}
+
+#search-result {
+    background-color: #363636;
+}
+
+#most-popular-tracks {
+    background-color: #363636;
     margin-top: 8px;
+}
+
+.material-icons {
+    color: white;
 }
 
 .user-feedback-container {
@@ -61,6 +91,10 @@ body, html {
     padding: 12px 12px;
     display: none;
     position: fixed;
+}
+
+.track-action+.track-action {
+    margin-top: 0px;
 }
 
 .user-feedback-text {
@@ -94,6 +128,7 @@ body, html {
         padding: 0px 12px;
         opacity: 0;
     }
+
     to {
         height: auto;
         margin-top: 8px;
@@ -111,6 +146,7 @@ body, html {
         padding: 12px 12px;
         opacity: 1;
     }
+
     to {
         height: 0px;
         margin-top: 0px;
@@ -119,15 +155,8 @@ body, html {
     }
 }
 
-#most-popular-tracks {
-    background-color: #363636;
-}
-
-#most-popular-tracks {
-    margin-top: 8px;
-}
-
-.artist-picture, .track-picture {
+.artist-picture,
+.track-picture {
     width: auto;
     height: 100%;
     border-radius: 4px;
@@ -143,7 +172,9 @@ body, html {
     margin: 0 8px 0 0;
 }
 
-.artist-name, .track-name, .artist-followers {
+.artist-name,
+.track-name,
+.artist-followers {
     margin: 0 0 0 16px;
     color: #000;
     text-overflow: ellipsis;
@@ -163,7 +194,8 @@ body, html {
     margin: 0px
 }
 
-.artist-item, .track-item {
+.artist-item,
+.track-item {
     text-decoration: none;
     align-items: center;
     display: flex;
@@ -176,10 +208,15 @@ body, html {
     white-space: nowrap;
 }
 
-.artist-description, .track-description {
+.artist-description,
+.track-description {
     align-content: space-between;
     height: 100%;
     overflow: hidden;
+}
+
+.track-container {
+    display: flex;
 }
 
 .followers {
