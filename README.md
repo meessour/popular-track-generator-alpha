@@ -1,65 +1,62 @@
 # Spotify Artists Best-Of Showcase
 ## Previews and live demo's
 
+[Live Demo](https://meessour.github.io/web-app-from-scratch-1920/index.html)
+
+[[Outdated] Week 1 Demo](https://meessour.github.io/web-app-from-scratch-1920/code-archive-week-1/)
+[[Outdated] Week 2 Demo](https://meessour.github.io/web-app-from-scratch-1920/code-archive-week-2/)
+[[Outdated] Week 3 Demo](https://meessour.github.io/web-app-from-scratch-1920/code-archive-week-3/)
 <details>
 <summary>Week 1 preview</summary>
 
-![Preview](./img/website-preview-week-1.png)
+![Preview](./resources/images/read-me/website-previews/website-preview-week-1.png)
 </details>
 
 <details>
 <summary>Week 2 preview</summary>
 
-![Preview](./img/website-preview-week-2.png)
+![Preview](./resources/images/read-me/website-previews/website-preview-week-2.png)
 </details>
 
-[Week 3 Demo](https://meessour.github.io/web-app-from-scratch-1920/week-3/)
 <details>
 <summary>Week 3 preview</summary>
 
-![Preview](./img/website-preview-week-3.png)
+![Preview](./resources/images/read-me/website-previews/website-preview-week-3.png)
 </details>
 
 ## Functionalities
 
 The main functionality of the app is displaying the most popular tracks of an artists. [Spotify](https://www.spotify.com/) currently has this feature implemented, but with limitations. Spotify only showcases the top 10 most popular tracks of an artist on their page. This app also showcases the most popluar tracks, but without the limitation of 10 tracks.
-<details>
-<summary>Click here to show example</summary>
-
-![Overview](./img/camo_krooked_most_popluar.png)
-</details>
 
 ## Actor diagram
- 
 <details>
 <summary>Actor diagram (Week 2)</summary>
 
-![Actor diagram](./img/actor-diagram-week-2.png)
+![Actor diagram](./resources/images/read-me/diagrams/actor-diagram/actor-diagram-week-2.png)
 </details>
 
 <details>
 <summary>Actor diagram (Week 3)</summary>
 
-![Actor diagram](./img/actor-diagram-week-3.png)
+![Actor diagram](./resources/images/read-me/diagrams/actor-diagram/actor-diagram-week-3.png)
 </details>
 
-## Interaction diagram
+## Interaction diagram 
 <details>
 <summary>Interaction diagram (Week 2)</summary>
 
-![Interaction diagram](./img/interaction-diagram-week-2.png)
+![Interaction diagram](./resources/images/read-me/diagrams/interaction-diagram/interaction-diagram-week-2.png)
 </details>
 
 <details>
 <summary>Interaction diagram (Week 3)</summary>
 
-![Interaction diagram](./img/interaction-diagram-week-3.png)
+![Interaction diagram](./resources/images/read-me/diagrams/interaction-diagram/interaction-diagram-week-3.png)
 </details>
 
 ## API
-
 [The Spotify Web API](https://developer.spotify.com/documentation/web-api/) Based on simple REST principles, the Spotify Web API endpoints return JSON metadata about music artists, albums, and tracks, directly from the Spotify Data Catalogue.
-<br/>
+
 There aren't any restrictions mentioned in the docs of REST Countries.
 
 Here is the format in which the API returns it's data (fetching artists by search query in string format):
