@@ -208,6 +208,10 @@ html {
     white-space: nowrap;
 }
 
+.artist-item {
+    background-color: white;
+}
+
 .artist-description,
 .track-description {
     align-content: space-between;
