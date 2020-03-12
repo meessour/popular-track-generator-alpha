@@ -4,7 +4,7 @@ function parseTokenData(tokenData) {
             accessToken: tokenData.access_token,
             expiresIn: tokenData.expires_in
         };
-    };
+    }
     console.log("One or more response items related to the token are undefined");
 
     return;
@@ -12,13 +12,13 @@ function parseTokenData(tokenData) {
 
 // Return all the ids of the albums
 function getAlbumIds(albums) {
-    const albumIds = []
+    const albumIds = [];
 
     albums.map((album) => {
         // Check if the album has an id
         if (album && album.id) {
             albumIds.push(album.id);
-        };
+        }
     });
 
     return albumIds.length ? albumIds : undefined;
@@ -26,13 +26,13 @@ function getAlbumIds(albums) {
 
 // Return all the ids of the tracks
 function getTrackIds(tracks) {
-    const trackIds = []
+    const trackIds = [];
 
     tracks.map((track) => {
         // Check if the track has an id
         if (track && track.id) {
             trackIds.push(track.id);
-        };
+        }
     });
 
     return trackIds.length ? trackIds : undefined;
@@ -40,13 +40,13 @@ function getTrackIds(tracks) {
 
 
 function filterTracksFromAlbums(albums) {
-    const allTracks = []
+    const allTracks = [];
 
     albums.map((album) => {
         // Check if the album contains tracks
         if (album && album.tracks && album.tracks.items) {
             allTracks.push.apply(allTracks, album.tracks.items);
-        };
+        }
     });
 
     return allTracks.length ? allTracks : undefined;
@@ -54,14 +54,14 @@ function filterTracksFromAlbums(albums) {
 
 // Only return the tracks of the artist searched for
 function filterRelevantTracks(tracks, artistId) {
-    const filteredTracks = []
+    const filteredTracks = [];
 
     tracks.map((track) => {
         // Check if the track is made by the artist
         if (track && Array.isArray(track.artists) &&
             track.artists.some(track => track.id === artistId)) {
             filteredTracks.push(track);
-        };
+        }
     });
     // Only return the array when it contains one or more tracks
     return filteredTracks.length ? filteredTracks : undefined;
@@ -69,7 +69,7 @@ function filterRelevantTracks(tracks, artistId) {
 
 // Remove duplicate tracks from the list
 function filterDuplicateTracks(tracks) {
-    const filteredTracks = []
+    const filteredTracks = [];
 
     tracks.map((track) => {
         // Check if the track already exists in the filtered tracks array
@@ -77,7 +77,7 @@ function filterDuplicateTracks(tracks) {
             !filteredTracks.some(filteredTrack => filteredTrack.external_ids.isrc === track.external_ids.isrc)) {
 
             filteredTracks.push(track);
-        };
+        }
     });
     // Only return the array when it contains one or more tracks
     return filteredTracks.length ? filteredTracks : undefined;

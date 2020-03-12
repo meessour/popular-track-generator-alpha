@@ -1,6 +1,6 @@
 
 function getArtistSearchResultsTemplate(artists) {
-    if (!Array.isArray(artists)) return
+    if (!Array.isArray(artists)) return;
 
     let html = "";
 
@@ -17,11 +17,11 @@ function getArtistSearchResultsTemplate(artists) {
         </a>`
     );
 
-    return html
+    return html;
 }
 
 function getMostPopularTracksTemplate(tracks) {
-    if (!Array.isArray(tracks)) return
+    if (!Array.isArray(tracks)) return;
 
     let html = "";
 
@@ -47,7 +47,7 @@ function getMostPopularTracksTemplate(tracks) {
         `
     );
 
-    return html
+    return html;
 }
 
 // Used to add decimal points (dots) between every third number of a number
@@ -55,4 +55,4 @@ function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 }
 
-export { getArtistSearchResultsTemplate, getMostPopularTracksTemplate }
+export { getArtistSearchResultsTemplate, getMostPopularTracksTemplate };

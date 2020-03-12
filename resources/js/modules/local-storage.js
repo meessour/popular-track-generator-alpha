@@ -1,9 +1,9 @@
 async function getTokenFromLocalStorage() {
     // Check if localstorage is supported by browser/client. If not, fetch token and don't check localstorage
-    if (!typeof (Storage)) return
+    if (!typeof (Storage)) return;
 
-    const localAccessToken = localStorage.getItem("token")
-    const localTokenExpirationTime = localStorage.getItem("tokenExpirationTime")
+    const localAccessToken = localStorage.getItem("token");
+    const localTokenExpirationTime = localStorage.getItem("tokenExpirationTime");
 
     // Taken from https://www.w3schools.com/jsref/jsref_obj_date.asp
     const currentTime = new Date().getTime() / 1000;
@@ -11,9 +11,9 @@ async function getTokenFromLocalStorage() {
     // If the token stored locally is still valid, return it
     if (localAccessToken &&
         localTokenExpirationTime &&
-        localTokenExpirationTime >= currentTime) return localAccessToken
+        localTokenExpirationTime >= currentTime) return localAccessToken;
 
-    return
+    return;
 }
 
 function setTokenInLocalStorage(accessToken, expiresIn) {
@@ -25,7 +25,7 @@ function setTokenInLocalStorage(accessToken, expiresIn) {
             const currenTime = new Date().getTime() / 1000;
 
             // Time in seconds when 
-            const tokenExpirationTime = currenTime + expiresIn
+            const tokenExpirationTime = currenTime + expiresIn;
 
             // Put the the token and expiration time in the localstorage .
             localStorage.setItem("token", accessToken);
@@ -34,4 +34,4 @@ function setTokenInLocalStorage(accessToken, expiresIn) {
     }
 }
 
-export { getTokenFromLocalStorage, setTokenInLocalStorage }
+export { getTokenFromLocalStorage, setTokenInLocalStorage };
