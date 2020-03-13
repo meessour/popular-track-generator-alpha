@@ -4,7 +4,9 @@
 [Live Demo](https://meessour.github.io/web-app-from-scratch-1920/)
 
 [[Outdated] Week 1 Demo](https://meessour.github.io/web-app-from-scratch-1920/code-archive-week-1/)
+
 [[Outdated] Week 2 Demo](https://meessour.github.io/web-app-from-scratch-1920/code-archive-week-2/)
+
 [[Outdated] Week 3 Demo](https://meessour.github.io/web-app-from-scratch-1920/code-archive-week-3/)
 <details>
 <summary>Week 1 preview</summary>
