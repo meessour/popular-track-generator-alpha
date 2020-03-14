@@ -25,7 +25,10 @@ function getAlbumIds(albums) {
         UserFeedback.setLoadingFeedbackText(i + "/" + albums.length + " albums checked. Filtered out " + ((i + 1) - albumIds.length) + " albums");
     }
 
-    return albumIds.length ? albumIds : undefined;
+    if (albumIds.length < 1)
+        throw "Error while filtering id's from albums";
+
+    return albumIds;
 }
 
 // Return all the ids of the tracks
@@ -39,7 +42,10 @@ function getTrackIds(tracks) {
         }
     });
 
-    return trackIds.length ? trackIds : undefined;
+    if (trackIds.length < 1)
+        throw "Error while filtering tracks id's";
+
+    return trackIds;
 }
 
 
@@ -53,7 +59,11 @@ function filterTracksFromAlbums(albums) {
         }
     });
 
-    return allTracks.length ? allTracks : undefined;
+    if (allTracks.length < 1)
+        throw "Error while filtering tracks from albums";
+
+    // Only return the array when it contains one or more tracks
+    return allTracks;
 }
 
 // Only return the tracks of the artist searched for
@@ -67,8 +77,12 @@ function filterRelevantTracks(tracks, artistId) {
             filteredTracks.push(track);
         }
     });
+
+    if (filteredTracks.length < 1)
+        throw "Error while filtering out irrelevant tracks";
+
     // Only return the array when it contains one or more tracks
-    return filteredTracks.length ? filteredTracks : undefined;
+    return filteredTracks;
 }
 
 // Remove duplicate tracks from the list
@@ -83,8 +97,12 @@ function filterDuplicateTracks(tracks) {
             filteredTracks.push(track);
         }
     });
+
+    if (filteredTracks.length < 1)
+        throw "Error while filtering duplicate tracks";
+
     // Only return the array when it contains one or more tracks
-    return filteredTracks.length ? filteredTracks : undefined;
+    return filteredTracks;
 }
 
 function sortTracksByPopularity(tracks) {

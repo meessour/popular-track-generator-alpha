@@ -4,7 +4,9 @@ import * as LocalStorage from './local-storage.js';
 import * as UserFeedback from './user-feedback.js';
 
 async function getAllAlbums(artistId, token) {
+    UserFeedback.setLoadingFeedbackTitle("Fetching albums");
     UserFeedback.setLoadingFeedbackText("Fetching albums by artist's id");
+
     // Fetch the albums of an artist
     const firstFetchResponse = await Api.fetchAlbumsByArtistId(token, artistId);
     if (!firstFetchResponse)
@@ -40,6 +42,9 @@ async function getAllAlbums(artistId, token) {
 
 // Used to fetch items where the API has a limit on items it can handle in the header
 async function getItemsWithCallLimit(itemIds, limit, itemType, token) {
+    UserFeedback.setLoadingFeedbackTitle("Fetching tracks");
+    UserFeedback.setLoadingFeedbackText("");
+
     // Check if the list has items 
     if (!Array.isArray(itemIds) || !itemIds.length)
         throw "No items were found";
@@ -84,6 +89,9 @@ async function getItemsWithCallLimit(itemIds, limit, itemType, token) {
 }
 
 async function getToken() {
+    UserFeedback.setLoadingFeedbackTitle("Getting token");
+    UserFeedback.setLoadingFeedbackText("");
+
     // Get the token form the local storage
     const token = await LocalStorage.getTokenFromLocalStorage();
 

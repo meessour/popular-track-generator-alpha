@@ -1,3 +1,5 @@
+import * as UserFeedback from './user-feedback.js';
+
 async function fetchToken() {
     const token = "Mjc3OWY3YmYwOTAzNDMxZWE2MTJkODFhNDM3YzY5MWI6Yjc2ZGEyODMxODM5NDU3ZGI4N2Q0NzJmNmI2MDdiYzY=";
 
@@ -90,6 +92,9 @@ function fetchArtists(input, token) {
 }
 
 async function fetchArtistNameById(artistId, token) {
+    UserFeedback.setLoadingFeedbackTitle("Fetching artist");
+    UserFeedback.setLoadingFeedbackText("");
+
     const requestType = "GET";
     const finalUrl = `https://api.spotify.com/v1/artists/${artistId}`;
 
