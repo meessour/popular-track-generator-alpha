@@ -1,0 +1,15 @@
+afbeeldingine uitzetten, witte achtergornd:
+    Achtergornd kleur rgba(54, 54, 54, 0.5) maken
+
+geen icoon zonder afbeel;dignen:
+    Checken of de API een afbeelding inlaad, zo niet laad dan placeholder image in.
+
+track overview geen afbeeldign? te veel margin
+    Maak margin kleiner van text en voeg toe aan afbeelding
+
+
+Font uitzetten 
+    gifeed door fall back fan serif naar sans-serif te veranderen
+
+Lege feedback mesages
+    Gefixed door een standard fall back te doen naar: Oops, something went wrong!

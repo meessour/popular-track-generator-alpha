@@ -1,3 +1,5 @@
+import * as UserFeedback from './user-feedback.js';
+
 function parseTokenData(tokenData) {
     if (tokenData && tokenData.access_token && tokenData.expires_in) {
         return {
@@ -14,12 +16,14 @@ function parseTokenData(tokenData) {
 function getAlbumIds(albums) {
     const albumIds = [];
 
-    albums.map((album) => {
+    for (let i = 0; i < albums.length; i++) {
         // Check if the album has an id
-        if (album && album.id) {
-            albumIds.push(album.id);
+        if (albums[i] && albums[i].id) {
+            albumIds.push(albums[i].id);
         }
-    });
+
+        UserFeedback.setLoadingFeedbackText(i + "/" + albums.length + " albums checked. Filtered out " + ((i + 1) - albumIds.length) + " albums");
+    }
 
     return albumIds.length ? albumIds : undefined;
 }

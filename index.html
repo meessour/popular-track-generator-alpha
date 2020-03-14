@@ -11,19 +11,32 @@
     <!-- Material ui icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font -->
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div class="main-content centered">
         <h1>Search the most popular tracks of your favorite artist</h1>
         <div class="search centered">
-            <input type="text" class="artist-search-input" list="word-list" id="artist-name-input"
+            <input id="artist-name-input" class="artist-search-input" type="text" list="word-list"
                 placeholder="Search for artist">
-            <div id="user-feedback-container" class="user-feedback-container">
-                <p id="user-feedback-text" class="user-feedback-text"></p>
+            <!-- <button id="show-feedback">Show feedback</button>
+            <button id="hide-feedback">Hide feedback</button> -->
+            <div id="user-feedback-container">
+                <div class="user-feedback">
+                    <img id="loading-animation" class="user-feedback-icon" src="./resources/css/loading-animation.svg"
+                        width="40" alt="">
+                    <i id="success-icon" class="material-icons user-feedback-icon">check_circle_outline</i>
+                    <i id="error-icon" class="material-icons user-feedback-icon">error_outline</i>
+                </div>
+                <div class="user-feedback">
+                    <h4 id="user-feedback-title">Parsing albums</h4>
+                    <p id="user-feedback-text">3 / 5 albums parsed</p>
+                </div>
             </div>
-            <div id="search-result">
+            <div id="search-result" class="hidden">
                 <!-- Here will all the search results appear -->
             </div>
 

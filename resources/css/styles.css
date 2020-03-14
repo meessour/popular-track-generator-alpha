@@ -1,8 +1,26 @@
+:root {
+    /* Colors */
+    --black: #000;
+    --white: #fff;
+
+    --dark: #363636;
+    --purple: hsl(282, 44%, 40%);
+    --blue: hsl(204, 64%, 40%);
+    --green: hsl(134, 61%, 40%);
+    --red: hsl(354, 70%, 40%);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
 body,
 html {
     height: 100%;
     margin: 0;
     background-image: url("./images/background-of-microphone.jpg");
+    background-color: var(--purple);
     height: 100%;
     width: 100%;
     background-position: center;
@@ -11,13 +29,21 @@ html {
     background-attachment: fixed;
 }
 
-* {
-    box-sizing: border-box;
-    font-family: 'Montserrat'
+h1,
+h4 {
+    font-weight: 600;
+}
+
+p {
+    font-weight: 400;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .main-content {
-    color: #fff;
+    color: var(--white);
     font-weight: bold;
     width: 90%;
     max-width: 500px;
@@ -31,6 +57,15 @@ html {
     transform: translate(-50%);
 }
 
+.user-feedback-icon {
+    font-size: 40px !important;
+    color: var(--white);
+    float: left;
+    height: 40px;
+    width: 40px;
+    margin-right: 8px;
+}
+
 .artist-search-input {
     padding: 12px 20px;
     margin-top: 8px;
@@ -42,8 +77,8 @@ html {
 }
 
 .track-list-position {
-    color: #fff;
-    margin: 0 12px 32px 0;
+    color: var(--white);
+    margin: 0 0px 28px 0;
     text-align: left;
     min-width: 12px;
 }
@@ -64,101 +99,130 @@ html {
     text-decoration: none;
 }
 
+#user-feedback-container,
 #search-result,
-#most-popular-tracks,
-.user-feedback-container {
+#most-popular-tracks {
+    overflow: hidden;
     border-radius: 4px;
-    margin-top: 8px;
     width: 100%;
 }
 
 #search-result {
-    background-color: white;
+    background-color: var(--white);
+    margin-top: 8px;
 }
 
 #most-popular-tracks {
-    background-color: #363636;
+    background-color: var(--dark);
     margin-top: 8px;
 }
 
 .track-action-icon {
-    color: white;
+    color: var(--white);
 }
 
 .artist-result-icon {
-    color: black;
+    color: var(--dark);
     /* Margin used to add spacing between group icon and followers count of artist */
     margin-right: 4px;
 }
 
-.user-feedback-container {
-    background-color: transparent;
-    height: auto;
-    margin-top: 8px;
-    padding: 12px 12px;
-    display: none;
-    position: fixed;
+#user-feedback-container {
+    background-color: var(--blue);
+    height: 0px;
+    display: flex;
+    padding: 0px 12px;
+    margin: 0px;
 }
 
 .track-action+.track-action {
     margin-top: 0px;
 }
 
-.user-feedback-text {
+.user-feedback {
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+}
+
+#user-feedback-title,
+#user-feedback-text {
     margin: 0;
-    color: #000;
+    color: var(--white);
     text-align: left;
 }
 
 .error-color {
-    background-color: #ffbfbb;
+    background-color: var(--red) !important;
 }
 
 .success-color {
-    background-color: #daf7e5;
+    background-color: var(--green) !important;
+}
+
+.color-white {
+    color: var(--white) !important;
 }
 
 /* taken from: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_snackbar */
 
 .show-user-feedback {
-    visibility: visible;
-    display: block;
-    animation: fadein 0.5s, fadeout 0.25s 1.5s;
+    animation: fade-in 1s forwards, fade-out 1s 3s forwards;
 }
 
-/* taken from: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_snackbar */
+.start-loading {
+    animation: fade-in 0s forwards;
+}
 
-@keyframes fadein {
+.loading-complete {
+    animation: show-then-fade-out 4s forwards;
+}
+
+@keyframes fade-in {
     from {
         height: 0px;
-        margin-top: 0px;
         padding: 0px 12px;
-        opacity: 0;
+        margin: 0px;
     }
 
     to {
-        height: auto;
-        margin-top: 8px;
+        height: 64px;
         padding: 12px 12px;
-        opacity: 1;
+        margin-top: 8px;
     }
 }
 
-/* taken from: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_snackbar */
-
-@keyframes fadeout {
+@keyframes fade-out {
     from {
-        height: auto;
-        margin-top: 8px;
+        height: 64px;
         padding: 12px 12px;
-        opacity: 1;
+        margin-top: 8px;
     }
 
     to {
         height: 0px;
-        margin-top: 0px;
         padding: 0px 12px;
-        opacity: 0;
+        margin: 0px;
+    }
+}
+
+@keyframes show-then-fade-out {
+    0% {
+        height: 64px;
+        padding: 12px 12px;
+        margin-top: 8px;
+    }
+
+    90% {
+        height: 64px;
+        padding: 12px 12px;
+        margin-top: 8px;
+    }
+
+    100% {
+        height: 0px;
+        padding: 0px 12px;
+        margin: 0px;
     }
 }
 
@@ -167,6 +231,12 @@ html {
     width: auto;
     height: 100%;
     border-radius: 4px;
+    margin: 0 8px;
+}
+
+.artist-picture-placeholder {
+    color: var(--black);
+    font-size: 64px !important;
 }
 
 .search {
@@ -190,7 +260,7 @@ html {
 .track-name,
 .artist-followers {
     margin: 0;
-    color: #000;
+    color: var(--black);
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -199,14 +269,13 @@ html {
 }
 
 .track-name {
-    color: #fff;
+    color: var(--white);
 }
 
 .artist-followers {
     margin-left: 16px;
-    color: #000;
+    color: var(--black);
     margin: 0px;
-    letter-spacing: 1px;
 }
 
 .artist-item,
@@ -225,7 +294,7 @@ html {
 
 .artist-description,
 .track-description {
-    padding-left: 16px;
+    padding-left: 8px;
     align-content: space-between;
     height: 100%;
     overflow: hidden;

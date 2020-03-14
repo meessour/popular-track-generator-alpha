@@ -2,27 +2,33 @@ import * as TemplateEngine from './template-engine.js';
 import * as Api from './api.js';
 import * as Parser from './parser.js';
 import * as Getters from './getters.js';
+import * as UserFeedback from './user-feedback.js';
 
 const mostPopularTracks = document.getElementById("most-popular-tracks");
-const userFeedbackContainer = document.getElementById("user-feedback-container");
-const userFeedbackText = document.getElementById("user-feedback-text");
 
 async function setMostPopularTracks(artistId) {
     try {
+        UserFeedback.startLoadingFeedback();
         // No artistId was given. This means there can not be searched for an artist
         if (!artistId)
             throw "Could not search tracks for artist";
 
+        UserFeedback.setLoadingFeedbackTitle("Getting token");
+        UserFeedback.setLoadingFeedbackText("");
         const token = await Getters.getToken();
 
         if (!token)
             throw "Token could not be set";
 
+        UserFeedback.setLoadingFeedbackTitle("Fetching artist");
+        UserFeedback.setLoadingFeedbackText("");
         // Fetch the artist's information
         const artist = await Api.fetchArtistNameById(artistId, token);
         if (!artist)
             throw "Artist's information could not be loaded";
 
+        UserFeedback.setLoadingFeedbackTitle("Fetching albums");
+        UserFeedback.setLoadingFeedbackText("");
         // Fetch the albums
         let albums = await Getters.getAllAlbums(artistId, token);
         if (!albums)
@@ -35,11 +41,14 @@ async function setMostPopularTracks(artistId) {
         const albumsWithTrackInfoCallLimit = 20;
         const albumsWithTrackInfoCallType = "albums";
 
+        UserFeedback.setLoadingFeedbackTitle("Fetching tracks");
+        UserFeedback.setLoadingFeedbackText("");
         // Fetch the albums with simplified track information
         const albumsWithTrackInfo = await Getters.getItemsWithCallLimit(albumIds, albumsWithTrackInfoCallLimit, albumsWithTrackInfoCallType, token);
         if (!albumsWithTrackInfo)
             throw "Artist's albums with detailed track info could not be loaded";
 
+        UserFeedback.setLoadingFeedbackText("");
         const parsedAlbumsWithTrackInfo = Parser.filterTracksFromAlbums(albumsWithTrackInfo);
         if (!parsedAlbumsWithTrackInfo)
             throw "Albums with track info did not parse successfully";
@@ -57,11 +66,14 @@ async function setMostPopularTracks(artistId) {
         const fullInfoTracksCallLimit = 50;
         const fullInfoTracksCallType = "tracks";
 
+        UserFeedback.setLoadingFeedbackTitle("Fetching tracks");
+        UserFeedback.setLoadingFeedbackText("");
         // Fetch the tracks with detailed information
         const fullInfoTracks = await Getters.getItemsWithCallLimit(simplifiedTrackIds, fullInfoTracksCallLimit, fullInfoTracksCallType, token);
         if (!fullInfoTracks)
             throw "Artist's tracks with detailed track info could not be loaded";
 
+        UserFeedback.setLoadingFeedbackText("");
         const sortedFullInfoTracksByPopularity = Parser.sortTracksByPopularity(fullInfoTracks);
         if (!sortedFullInfoTracksByPopularity)
             throw "Sorting tracks by popularity did not went successful";
@@ -75,41 +87,15 @@ async function setMostPopularTracks(artistId) {
         if (!mostPopularTracksHtml)
             throw "Could not load results in list";
 
-        // setUserFeedback("Showing results for " + artist, false)
-        setUserFeedback(`${sortedFullInfoTracksByPopularity.length} most popular tracks loaded for: ${artist}`, false);
-
         // Fill the options in the list with results
         mostPopularTracks.innerHTML = mostPopularTracksHtml;
+
+        UserFeedback.stopLoadingFeedback(`${sortedFullInfoTracksByPopularity.length} tracks loaded for:`, artist, false);
     } catch (error) {
-        setUserFeedback(error);
+        UserFeedback.stopLoadingFeedback(error, "", true);
     }
 }
 
-// Show a snackbar looking feedback message. Standard message type is an error, unless told otherwise
-function setUserFeedback(message, isError = true) {
-    if (isError)
-        console.error(message);
 
-    // Set container color either the error or success color
-    isError ?
-        userFeedbackContainer.classList.add("error-color") :
-        userFeedbackContainer.classList.add("success-color");
 
-    // Set the user feedback
-    userFeedbackText.innerHTML = message;
-
-    // Show user feedback
-    userFeedbackContainer.classList.add("show-user-feedback");
-
-    // Show the feedback notification for 1.75 seconds
-    setTimeout(function () {
-        userFeedbackContainer.classList.remove("error-color");
-        userFeedbackContainer.classList.remove("success-color");
-        userFeedbackContainer.classList.remove("show-user-feedback");
-
-        userFeedbackText.innerHTML = "";
-    }, 1750);
-
-}
-
-export { setMostPopularTracks, setUserFeedback };
+export { setMostPopularTracks };
