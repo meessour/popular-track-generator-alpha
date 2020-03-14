@@ -58,10 +58,10 @@ async function setMostPopularTracks(artistId) {
         // Fill the options in the list with results
         mostPopularTracks.innerHTML = mostPopularTracksHtml;
 
-        UserFeedback.stopLoadingFeedback(`${parsedFullInfoTracks.length} tracks loaded for:`, artist, false);
+        UserFeedback.stopLoadingFeedback(`Showing most popular tracks for: ${artist}`, `${parsedFullInfoTracks.length} tracks loaded`, false);
     } catch (error) {
         console.log("error:", error);
-        
+
         UserFeedback.stopLoadingFeedback(error, "", true);
     }
 }

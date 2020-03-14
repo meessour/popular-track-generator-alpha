@@ -2,10 +2,12 @@
     /* Colors */
     --black: #000;
     --white: #fff;
+    --sky: #E0EAFC;
 
     --dark: #363636;
     --purple: hsl(282, 44%, 40%);
-    --blue: hsl(204, 64%, 40%);
+    --blue: linear-gradient(90deg, rgba(82, 45, 184, 1) 0%, rgba(28, 124, 224, 1) 100%);
+    /* --blue: hsl(204, 64%, 40%); */
     --green: hsl(134, 61%, 40%);
     --red: hsl(354, 70%, 40%);
 }
@@ -19,8 +21,12 @@ body,
 html {
     height: 100%;
     margin: 0;
-    background-image: url("./images/background-of-microphone.jpg");
-    background-color: var(--purple);
+    /* fallback for old browsers */
+    background: #23074d;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(0deg, #C33764, #1D2671);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(0deg, #C33764, #1D2671);
     height: 100%;
     width: 100%;
     background-position: center;
@@ -71,14 +77,32 @@ p {
     margin-top: 8px;
     display: inline-block;
     border: 1px solid #ccc;
+    background-color: var(--sky);
     border-radius: 4px;
     box-sizing: border-box;
     width: 100%;
 }
 
+::-webkit-input-placeholder {
+    /* Edge */
+    color: var(--black);
+    font-weight: 500;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer */
+    color: var(--black);
+    font-weight: 500;
+}
+
+::placeholder {
+    color: var(--black);
+    font-weight: 500;
+}
+
 .track-list-position {
     color: var(--white);
-    margin: 0 0px 28px 0;
+    margin: 0 8px 36px 0;
     text-align: left;
     min-width: 12px;
 }
@@ -108,12 +132,18 @@ p {
 }
 
 #search-result {
-    background-color: var(--white);
+    background-color: var(--sky);
     margin-top: 8px;
 }
 
 #most-popular-tracks {
-    background-color: var(--dark);
+    /* fallback for old browsers */
+    background: hsl(210, 29%, 25%);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(-45deg, hsl(210, 29%, 25%), hsl(204, 8%, 40%));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(-45deg, hsl(210, 29%, 25%) hsl(204, 8%, 40%));
+
     margin-top: 8px;
 }
 
@@ -128,7 +158,9 @@ p {
 }
 
 #user-feedback-container {
-    background-color: var(--blue);
+    /* background-color: var(--blue); */
+    /* background: hsl(256, 61%, 45%); */
+    background: rgb(32, 58, 67);
     height: 0px;
     display: flex;
     padding: 0px 12px;
@@ -186,7 +218,7 @@ p {
     }
 
     to {
-        height: 64px;
+        height: fit-content;
         padding: 12px 12px;
         margin-top: 8px;
     }
@@ -194,7 +226,7 @@ p {
 
 @keyframes fade-out {
     from {
-        height: 64px;
+        height: fit-content;
         padding: 12px 12px;
         margin-top: 8px;
     }
@@ -208,13 +240,13 @@ p {
 
 @keyframes show-then-fade-out {
     0% {
-        height: 64px;
+        height: fit-content;
         padding: 12px 12px;
         margin-top: 8px;
     }
 
     90% {
-        height: 64px;
+        height: fit-content;
         padding: 12px 12px;
         margin-top: 8px;
     }
@@ -231,7 +263,7 @@ p {
     width: auto;
     height: 100%;
     border-radius: 4px;
-    margin: 0 8px;
+    margin-right: 8px;
 }
 
 .artist-picture-placeholder {
