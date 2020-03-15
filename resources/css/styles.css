@@ -2,7 +2,7 @@
     /* Colors */
     --black: #000;
     --white: #fff;
-    --sky: #E0EAFC;
+    --sky: #f0f2f0;
 
     --dark: #363636;
     --purple: hsl(282, 44%, 40%);
@@ -24,7 +24,7 @@ html {
     /* fallback for old browsers */
     background: #23074d;
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(0deg, #C33764, #1D2671);
+    background: -webkit-linear-gradient(90deg, #C33764, #1D2671);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(0deg, #C33764, #1D2671);
     height: 100%;
@@ -102,9 +102,30 @@ p {
 
 .track-list-position {
     color: var(--white);
-    margin: 0 8px 36px 0;
+    margin: 0 8px 34px 0;
     text-align: left;
     min-width: fit-content;
+}
+
+/* Used to set an equal width for all the numbers width a set amount of characters */
+.character-width-1 {
+    min-width: 11px;
+    max-width: 11px;
+}
+
+.character-width-2 {
+    min-width: 21px;
+    max-width: 21px;
+}
+
+.character-width-3 {
+    min-width: 31px;
+    max-width: 31px;
+}
+
+.character-width-4 {
+    min-width: 41px;
+    max-width: 41px;
 }
 
 .track-actions-container {
@@ -118,7 +139,7 @@ p {
     width: 24px;
     height: 24px;
     border-radius: 4px;
-    margin: 8px;
+    margin: 12px 8px 0 0;
     cursor: pointer;
     text-decoration: none;
 }
@@ -140,15 +161,26 @@ p {
     /* fallback for old browsers */
     background: hsl(210, 29%, 25%);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(-45deg, hsl(210, 29%, 25%), hsl(204, 8%, 40%));
+    background: -webkit-linear-gradient(315deg, hsl(210, 29%, 25%), hsl(204, 8%, 40%));
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(-45deg, hsl(210, 29%, 25%) hsl(204, 8%, 40%));
+    background: linear-gradient(135deg, hsl(210, 29%, 25%), hsl(204, 8%, 40%));
 
     margin-top: 8px;
 }
 
 .track-action-icon {
-    color: var(--white);
+    /* fallback for old browsers */
+    background: #fd746c;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #ff9068, #fd746c);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ff9068, #fd746c);
+
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }
 
 .artist-result-icon {
@@ -263,7 +295,7 @@ p {
     width: auto;
     height: 100%;
     border-radius: 4px;
-    margin-right: 8px;
+    margin-right: 12px;
 }
 
 .artist-picture-placeholder {
@@ -302,6 +334,9 @@ p {
 
 .track-name {
     color: var(--white);
+    white-space: pre-wrap;
+    height: 50px;
+    line-height: 16px;
 }
 
 .artist-followers {
@@ -317,7 +352,7 @@ p {
     display: flex;
     height: 72px;
     max-height: 72px;
-    padding: 12px;
+    padding: 12px 8px 12px 12px;
     text-overflow: ellipsis;
     overflow: hidden;
     width: 100%;
@@ -326,7 +361,6 @@ p {
 
 .artist-description,
 .track-description {
-    padding-left: 8px;
     align-content: space-between;
     height: 100%;
     overflow: hidden;
