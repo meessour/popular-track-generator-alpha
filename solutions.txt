@@ -13,3 +13,8 @@ Font uitzetten
 
 Lege feedback mesages
     Gefixed door een standard fall back te doen naar: Oops, something went wrong!
+
+niet middle centered content
+    .track-list-position {
+         min-width: fit-content;
+    }
