@@ -1,7 +1,7 @@
 # Spotify Artists Best-Of Showcase
 ## Previews and live demo's
 
-[Live Demo](https://meessour.github.io/web-app-from-scratch-1920/)
+[Live Demo](https://meessour.github.io/PopularTrackGenerator-Alpha/)
 
 <details>
 <summary>View preview</summary>
